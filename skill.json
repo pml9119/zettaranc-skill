@@ -3,16 +3,16 @@
   "version": "4.3.0",
   "description": "A股唯一可运行的交易纪律蒸馏系统——从200万字语料到可回测可自改进的交易操作系统",
   "author": {
-    "name": "lululu811",
+    "name": "pml9119",
     "email": "",
-    "url": "https://github.com/lululu811"
+    "url": "https://github.com/pml9119"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lululu811/zettaranc-skill.git"
+    "url": "https://github.com/pml9119/zettaranc-skill.git"
   },
-  "homepage": "https://github.com/lululu811/zettaranc-skill",
+  "homepage": "https://github.com/pml9119/zettaranc-skill",
   "keywords": [
     "A股",
     "量化交易",
@@ -58,7 +58,7 @@
     "quick_start": {
       "description": "30秒体验（无需Token）",
       "commands": [
-        "git clone https://github.com/lululu811/zettaranc-skill.git",
+        "git clone https://github.com/pml9119/zettaranc-skill.git",
         "cd zettaranc-skill",
         "pip install -r requirements.txt",
         "pip install -e .",
@@ -69,7 +69,7 @@
     "full_install": {
       "description": "完整安装（接入真实行情）",
       "commands": [
-        "git clone https://github.com/lululu811/zettaranc-skill.git",
+        "git clone https://github.com/pml9119/zettaranc-skill.git",
         "cd zettaranc-skill",
         "pip install -r requirements.txt",
         "pip install -e .",
@@ -166,7 +166,7 @@
   },
   "disclaimer": "本Skill是分析框架，不是交易执行系统；所有输出均不构成投资建议。投资有风险，入市需谨慎。",
   "support": {
-    "issues": "https://github.com/lululu811/zettaranc-skill/issues",
-    "discussions": "https://github.com/lululu811/zettaranc-skill/discussions"
+    "issues": "https://github.com/pml9119/zettaranc-skill/issues",
+    "discussions": "https://github.com/pml9119/zettaranc-skill/discussions"
   }
 }

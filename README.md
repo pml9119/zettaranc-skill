@@ -18,7 +18,7 @@
 
 ```bash
 # 1. 克隆并安装
-git clone https://github.com/lululu811/zettaranc-skill.git && cd zettaranc-skill
+git clone https://github.com/pml9119/zettaranc-skill.git && cd zettaranc-skill
 pip install -r requirements.txt && pip install -e .
 
 # 2. 零配置模式（自动走免费数据源 a-stock-data，无需 tushare 积分）
@@ -205,7 +205,7 @@ python3 -m scripts.optimize_for_v10_verify --rounds 5 --stocks 100 --days 300
 
 ```bash
 # 1. 克隆并安装
-git clone https://github.com/lululu811/zettaranc-skill.git && cd zettaranc-skill
+git clone https://github.com/pml9119/zettaranc-skill.git && cd zettaranc-skill
 pip install -r requirements.txt && pip install -e .
 
 # 2. 配置环境变量
@@ -634,7 +634,7 @@ print(result.validation_report.generate_summary())
 ### 1. 安装
 
 ```bash
-git clone https://github.com/lululu811/zettaranc-skill.git
+git clone https://github.com/pml9119/zettaranc-skill.git
 cd zettaranc-skill
 pip install -r requirements.txt
 pip install -e .   # 注册 zt / zt-web / zt-monitor 三个命令
@@ -1415,19 +1415,19 @@ CI 工作流（`.github/workflows/test.yml`）每周一跑真实数据回归 + �
 
 | 项目 | 蒸馏对象 | 一句话定位 |
 |------|---------|-----------|
-| [**zettaranc-skill**](https://github.com/lululu811/zettaranc-skill) | Z哥（万千） | 职业交易员的交易决策框架（你正在看的这个） |
-| [**mo-skill**](https://github.com/lululu811/mo-skill) | BOSS墨 | 285期B站视频里的交易思维蒸馏 |
-| [**benben-jiucai-perspective**](https://github.com/lululu811/benben-jiucai-perspective) | 笨笨的韭菜 | A股景气投资，260万字视频蒸馏 |
-| [**fupeng-perspective**](https://github.com/lululu811/fupeng-perspective) | 付鹏 | 东北证券首席经济学家的宏观分析框架 |
-| [**jiangju-perspective**](https://github.com/lululu811/jiangju-perspective) | 战国时代_姜汁汽水 | 地缘财经思维，基于186篇视频文稿 |
+| [**zettaranc-skill**](https://github.com/pml9119/zettaranc-skill) | Z哥（万千） | 职业交易员的交易决策框架（你正在看的这个） |
+| [**mo-skill**](https://github.com/pml9119/mo-skill) | BOSS墨 | 285期B站视频里的交易思维蒸馏 |
+| [**benben-jiucai-perspective**](https://github.com/pml9119/benben-jiucai-perspective) | 笨笨的韭菜 | A股景气投资，260万字视频蒸馏 |
+| [**fupeng-perspective**](https://github.com/pml9119/fupeng-perspective) | 付鹏 | 东北证券首席经济学家的宏观分析框架 |
+| [**jiangju-perspective**](https://github.com/pml9119/jiangju-perspective) | 战国时代_姜汁汽水 | 地缘财经思维，基于186篇视频文稿 |
 
 ### 配套工具
 
 | 项目 | 用途 |
 |------|------|
-| [**bilibili-subtitle-downloader**](https://github.com/lululu811/bilibili-subtitle-downloader) | B站视频字幕下载器 |
-| [**content-factory**](https://github.com/lululu811/content-factory) | A股投研AI编辑部 |
-| [**halo-skill**](https://github.com/lululu811/halo-skill) | 股票数据验证 |
+| [**bilibili-subtitle-downloader**](https://github.com/pml9119/bilibili-subtitle-downloader) | B站视频字幕下载器 |
+| [**content-factory**](https://github.com/pml9119/content-factory) | A股投研AI编辑部 |
+| [**halo-skill**](https://github.com/pml9119/halo-skill) | 股票数据验证 |
 
 ---
 
@@ -1461,7 +1461,7 @@ CI 工作流（`.github/workflows/test.yml`）每周一跑真实数据回归 + �
 
 | 平台 | 地址 | 说明 |
 |------|------|------|
-| **GitHub** | https://github.com/lululu811/zettaranc-skill.git | 主仓库 |
+| **GitHub** | https://github.com/pml9119/zettaranc-skill.git | 主仓库 |
 | **Gitee** | https://gitee.com/chenleizzzz/zettaranc-knowledge.git | 镜像同步 |
 
 ---

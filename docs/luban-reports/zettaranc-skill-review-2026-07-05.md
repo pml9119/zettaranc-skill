@@ -312,7 +312,7 @@ Version: 3.5.0 | 2026-07-04
 ## 30 秒体验（无需 Token）
 
 ```bash
-git clone https://github.com/lululu811/zettaranc-skill.git && cd zettaranc-skill
+git clone https://github.com/pml9119/zettaranc-skill.git && cd zettaranc-skill
 pip install -r requirements.txt && pip install -e .
 echo "DATA_MODE=websearch" > .env
 zt analyze 600519.SH  # 用框架分析茅台，不需要行情数据
@@ -512,7 +512,7 @@ zt analyze 600519.SH  # 用框架分析茅台，不需要行情数据
 
 ### 同类Skill
 
-- [zettaranc-skill GitHub](https://github.com/lululu811/zettaranc-skill)
+- [zettaranc-skill GitHub](https://github.com/pml9119/zettaranc-skill)
 - [a-stock-data (caicongyang)](https://x.com/caicongyang1233)
 - [stock-trading-agents-light · ClawHub](https://clawhub.ai/laigen/skills/stock-trading-agents-light)
 - [Stock-Analysis · SkillHub 腾讯](https://skillhub.cloud.tencent.com/skills/stock-analysis)

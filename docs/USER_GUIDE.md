@@ -94,7 +94,7 @@ SKILL.md（LLM 角色层：Z 哥视角点评、多轮问诊、表达 DNA）
 ### 2.1 安装
 
 ```bash
-git clone https://github.com/lululu811/zettaranc-skill.git
+git clone https://github.com/pml9119/zettaranc-skill.git
 cd zettaranc-skill
 pip install -r requirements.txt
 # 或安装为本地可编辑包（推荐，会注册 zt / zt-web / zt-monitor 命令）
