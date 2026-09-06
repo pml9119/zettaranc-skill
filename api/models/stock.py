@@ -145,6 +145,7 @@ class KirinInfo(BaseModel):
 class StockAnalysisResponse(BaseModel):
     ts_code: str
     name: str = ""
+    industry: str = ""
     price: float = 0
     prev_close: float = 0
     pct_chg: float = 0
@@ -171,6 +172,9 @@ class ChartOverlays(BaseModel):
     ma10: list[float | None] = []
     ma20: list[float | None] = []
     ma60: list[float | None] = []
+    ma6: list[float | None] = []
+    ma24_green: list[float | None] = []
+    ma24_cyan: list[float | None] = []
     bbi: list[float | None] = []
     boll_upper: list[float | None] = []
     boll_mid: list[float | None] = []
@@ -196,12 +200,23 @@ class BrickSeries(BaseModel):
     colors: list[int | None] = []
 
 
+class IndicatorSeries(BaseModel):
+    rsi: dict[str, list] = {}
+    wr: dict[str, list] = {}
+    vol_ratio: list = []
+    dmi: dict[str, list] = {}
+    sell_score: list = []
+    score: dict[str, list] = {}
+
+
 class KlineChartResponse(BaseModel):
     ts_code: str
     name: str = ""
+    industry: str = ""
     dates: list[str] = []
     ohlc: list[list[float]] = []
     volumes: list[float] = []
+    turnovers: list[float] = []
     pct_chgs: list[float] = []
     overlays: ChartOverlays = ChartOverlays()
     signal_markers: list[SignalMarker] = []
@@ -211,6 +226,7 @@ class KlineChartResponse(BaseModel):
     waves_sequence: list[str] = []
     kirin_sequence: list[str] = []
     breathing_wave: list[float] = []
+    indicator_series: IndicatorSeries = IndicatorSeries()
 
 
 

@@ -1,6 +1,8 @@
 from .base import (
     calculate_zg_white,
+    calculate_zg_white_series,
     calculate_dg_yellow,
+    calculate_dg_yellow_series,
     detect_double_line_cross,
     calculate_rsl,
     detect_needle_20,

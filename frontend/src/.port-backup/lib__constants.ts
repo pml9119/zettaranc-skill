@@ -1,4 +1,4 @@
-﻿// 策略列表
+// 策略列表
 export const STRATEGIES = [
   { alias: 'B1', label: 'B1 买点' },
   { alias: 'B2', label: 'B2 确认' },

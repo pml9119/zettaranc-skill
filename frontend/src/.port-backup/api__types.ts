@@ -10,7 +10,6 @@ export interface ErrorResponse {
 export interface StockAnalysis {
   ts_code: string;
   name: string;
-  industry?: string;
   price: number;
   prev_close: number;
   pct_chg: number;
@@ -96,11 +95,9 @@ export interface KirinInfo {
 export interface KlineChart {
   ts_code: string;
   name: string;
-  industry?: string;
   dates: string[];
   ohlc: number[][];
   volumes: number[];
-  turnovers?: number[];
   pct_chgs: number[];
   overlays: ChartOverlays;
   signal_markers: SignalMarker[];
@@ -110,15 +107,6 @@ export interface KlineChart {
   waves_sequence?: string[];
   kirin_sequence?: string[];
   breathing_wave?: number[];
-  /** 逐日指标序列（长度与 dates 对齐），供技术指标卡随主图悬停联动 */
-  indicator_series?: {
-    rsi: { rsi6: (number | null)[]; rsi12: (number | null)[]; rsi24: (number | null)[] };
-    wr: { wr5: (number | null)[]; wr10: (number | null)[] };
-    vol_ratio: (number | null)[];
-    dmi: { plus: (number | null)[]; minus: (number | null)[]; adx: (number | null)[] };
-    sell_score: (number | null)[];
-    score: { total: (number | null)[]; b1: (number | null)[]; trend: (number | null)[]; volume: (number | null)[]; risk: (number | null)[]; reasons: string[][]; warnings: string[][] };
-  };
 }
 
 export interface ChartOverlays {
@@ -126,9 +114,6 @@ export interface ChartOverlays {
   ma10: (number | null)[];
   ma20: (number | null)[];
   ma60: (number | null)[];
-  ma6?: (number | null)[];
-  ma24_green?: (number | null)[];
-  ma24_cyan?: (number | null)[];
   bbi: (number | null)[];
   boll_upper: (number | null)[];
   boll_mid: (number | null)[];
@@ -142,17 +127,6 @@ export interface SignalMarker {
   type: string;
   price: number;
   action: string;
-}
-
-// ── 股票搜索 ──
-export interface StockSearchItem {
-  ts_code: string;
-  name: string;
-  industry: string;
-}
-
-export interface StockSearchResponse {
-  results: StockSearchItem[];
 }
 
 // ── 选股 ──

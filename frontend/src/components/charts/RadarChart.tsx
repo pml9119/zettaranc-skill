@@ -1,12 +1,20 @@
-import ReactECharts from 'echarts-for-react';
+import EChartsReact from '../../lib/EChartsReact';
 import type { ScoreDetail } from '../../api/types';
 
 interface Props {
   score: ScoreDetail;
   height?: number;
+  /** 悬停日的五维评分；null = 显示最新快照 */
+  hover?: { b1: number; trend: number; volume: number; risk: number } | null;
 }
 
-export default function RadarChart({ score, height = 220 }: Props) {
+export default function RadarChart({ score, height = 220, hover }: Props) {
+  const values = [
+    hover?.b1 ?? score.b1_score,
+    hover?.trend ?? score.trend_score,
+    hover?.volume ?? score.volume_score,
+    hover?.risk ?? score.risk_score,
+  ];
   const option = {
     backgroundColor: 'transparent',
     radar: {
@@ -32,7 +40,7 @@ export default function RadarChart({ score, height = 220 }: Props) {
         type: 'radar',
         data: [
           {
-            value: [score.b1_score, score.trend_score, score.volume_score, score.risk_score],
+            value: values,
             name: '评分',
             areaStyle: {
               color: {
@@ -52,5 +60,5 @@ export default function RadarChart({ score, height = 220 }: Props) {
     ],
   };
 
-  return <ReactECharts option={option} style={{ height }} notMerge />;
+  return <EChartsReact option={option} style={{ height }} notMerge />;
 }

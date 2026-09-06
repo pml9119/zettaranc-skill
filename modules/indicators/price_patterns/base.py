@@ -15,6 +15,38 @@ def calculate_zg_white(klines: list[DailyData]) -> float:
     return round(ema2_series[-1], 2) if ema2_series else 0
 
 
+def calculate_zg_white_series(klines: list[DailyData]) -> list[float]:
+    """
+    计算白线全序列（O(n) 一次递推），结果与 calculate_zg_white 完全一致：
+
+    真·双 EMA 全历史递推（2026-08-16 对齐通达信口径）：
+    - i < 9：0
+    - i >= 9：EMA(EMA(C[0:i+1],10) 序列, 10)，序列为全序列的
+    """
+    n = len(klines)
+    if n == 0:
+        return []
+    closes = [k.close for k in klines]
+    out = [0.0] * n
+    if n < 10:
+        return out
+
+    k = 2 / 11
+    # 第一层 EMA(10) 全序列
+    e1_list = [closes[0]]
+    e1 = closes[0]
+    for c in closes[1:]:
+        e1 = c * k + e1 * (1 - k)
+        e1_list.append(e1)
+    # 第二层 EMA(10)，作用于 E1 序列全历史递推，初值=E1 首值
+    e2 = e1_list[0]
+    for i in range(1, n):
+        e2 = e1_list[i] * k + e2 * (1 - k)
+        if i >= 9:
+            out[i] = round(e2, 2)
+    return out
+
+
 def calculate_dg_yellow(klines: list[DailyData]) -> float:
     """
     计算 大哥线 = (MA14 + MA28 + MA57 + MA114) / 4
@@ -29,6 +61,32 @@ def calculate_dg_yellow(klines: list[DailyData]) -> float:
     ma57 = calculate_ma(closes, 57)
     ma114 = calculate_ma(closes, 114)
     return round((ma14 + ma28 + ma57 + ma114) / 4, 2)
+
+
+def calculate_dg_yellow_series(klines: list[DailyData]) -> list[float]:
+    """
+    计算大哥线（黄线）全序列（O(n) 前缀和），结果与 calculate_dg_yellow 完全一致：
+
+    大哥线 = (MA14 + MA28 + MA57 + MA114) / 4；i < 113 时为 0
+    """
+    n = len(klines)
+    if n == 0:
+        return []
+    closes = [k.close for k in klines]
+    out = [0.0] * n
+    if n < 114:
+        return out
+
+    pref = [0.0]
+    for c in closes:
+        pref.append(pref[-1] + c)
+    for i in range(113, n):
+        ma14 = (pref[i + 1] - pref[i - 13]) / 14
+        ma28 = (pref[i + 1] - pref[i - 27]) / 28
+        ma57 = (pref[i + 1] - pref[i - 56]) / 57
+        ma114 = (pref[i + 1] - pref[i - 113]) / 114
+        out[i] = round((ma14 + ma28 + ma57 + ma114) / 4, 2)
+    return out
 
 
 def detect_double_line_cross(klines: list[DailyData]) -> tuple[bool, bool]:

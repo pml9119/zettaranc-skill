@@ -1,5 +1,5 @@
 import api from './client';
-import type { StockAnalysis, KlineChart, CommentaryResponse, StockSearchItem } from './types';
+import type { StockAnalysis, KlineChart, CommentaryResponse } from './types';
 
 export async function fetchStockAnalysis(tsCode: string, days = 120): Promise<StockAnalysis> {
   const { data } = await api.get<StockAnalysis>(`/stock/analyze/${tsCode}`, { params: { days } });
@@ -9,14 +9,6 @@ export async function fetchStockAnalysis(tsCode: string, days = 120): Promise<St
 export async function fetchKlineData(tsCode: string, days = 120): Promise<KlineChart> {
   const { data } = await api.get<KlineChart>(`/stock/analyze/${tsCode}/klines`, { params: { days } });
   return data;
-}
-
-/** 个股搜索（StockSearchInput 用）：按代码/名称正则匹配 */
-export async function searchStocks(q: string, limit = 10): Promise<StockSearchItem[]> {
-  const { data } = await api.get<{ results: StockSearchItem[] }>('/stock/search/all', {
-    params: { q, limit },
-  });
-  return data.results;
 }
 
 export async function fetchSignals(tsCode: string, days = 120) {

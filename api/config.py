@@ -11,10 +11,10 @@ class Settings(BaseSettings):
     data_mode: str = "websearch"
 
     # CORS
-    cors_origins: str = "http://localhost:5173,http://localhost:3000"
+    cors_origins: str = "http://localhost:5200,http://localhost:3000"
 
     # API
-    api_port: int = 8000
+    api_port: int = 8001
     api_prefix: str = "/api/v1"
 
     model_config = {"env_file": ".env", "env_file_encoding": "utf-8", "extra": "ignore"}

@@ -1,9 +1,57 @@
 """股票分析服务 — 封装 modules 层的分析逻辑"""
 
 import logging
-from typing import Any
+import time
+from typing import Any, Callable, TypeVar
 
 logger = logging.getLogger(__name__)
+
+_T = TypeVar("_T")
+
+# ── 响应级 TTL 缓存（5 分钟）──
+# 个股分析的计算链（战法识别/诊断/评分/序列计算）较重，
+# 前端每 60s 轮询 + 页面切换会反复触发，用 (ts_code, days) 维度缓存摊薄。
+_CACHE_TTL = 300  # 秒
+
+
+def _cache_get_or_compute(
+    cache: dict[tuple[str, int], tuple[float, _T]], key: tuple[str, int], compute: Callable[[], _T]
+) -> _T:
+    """TTL 缓存：命中且在有效期内直接返回，否则重算并写入"""
+    now = time.monotonic()
+    hit = cache.get(key)
+    if hit is not None and now - hit[0] < _CACHE_TTL:
+        return hit[1]
+    value = compute()
+    cache[key] = (now, value)
+    return value
+
+
+_full_analysis_cache: dict[tuple[str, int], tuple[float, dict[str, Any]]] = {}
+_kline_chart_cache: dict[tuple[str, int], tuple[float, dict[str, Any]]] = {}
+_signals_cache: dict[tuple[str, int], tuple[float, list[dict]]] = {}
+
+
+def _get_cached_signals(ts_code: str, days: int) -> list[dict]:
+    """
+    战法信号缓存：/analyze 与 /klines 两个端点共享，避免同一次页面加载重复检测。
+
+    信号检测（30+ 战法逐日管线）是响应耗时大头，而页面只展示最近 20 个信号、
+    图表标注最多 30 个——检测窗口固定取 min(days, 120)，
+    避免 250/500 日周期切换时信号检测随 days 线性放大。
+    """
+    return _cache_get_or_compute(_signals_cache, (ts_code, days), lambda: _detect_signals(ts_code, min(days, 120)))
+
+
+def _detect_signals(ts_code: str, days: int) -> list[dict]:
+    from modules.strategies import detect_all_strategies
+
+    try:
+        signals = detect_all_strategies(ts_code, days=days)
+    except Exception:
+        logger.exception("策略信号检测失败: %s", ts_code)
+        signals = []
+    return _build_signals(signals)
 
 
 def get_full_analysis(ts_code: str, days: int = 120) -> dict[str, Any]:
@@ -54,8 +102,8 @@ def get_full_analysis(ts_code: str, days: int = 120) -> dict[str, Any]:
     except Exception:
         logger.warning("三波/麒麟会分析失败: %s", ts_code, exc_info=True)
 
-    # 3. 策略信号
-    signals = detect_all_strategies(ts_code, days=days)
+    # 3. 策略信号（共享缓存，/klines 端点复用同一份结果）
+    signals = _get_cached_signals(ts_code, days)
 
     # 4. 诊断
     diagnosis = diagnose_stock(ts_code, days=days)
@@ -67,6 +115,7 @@ def get_full_analysis(ts_code: str, days: int = 120) -> dict[str, Any]:
     return {
         "ts_code": ts_code,
         "name": getattr(diagnosis, "name", ts_code),
+        "industry": _get_stock_industry(ts_code),
         "price": getattr(diagnosis, "price", 0),
         "prev_close": prev_close,
         "pct_chg": pct_chg,
@@ -74,7 +123,7 @@ def get_full_analysis(ts_code: str, days: int = 120) -> dict[str, Any]:
         "indicators": _build_indicators(result, diagnosis),
         "waves": _build_waves(wave_data),
         "kirin": _build_kirin(kirin_data),
-        "signals": _build_signals(signals),
+        "signals": signals,
         "score": _build_score(score),
         "diagnosis": _build_diagnosis(diagnosis),
     }
@@ -130,61 +179,92 @@ def get_kline_chart_data(ts_code: str, days: int = 120) -> dict[str, Any]:
         lows.append(k.low)
         opens.append(k.open)
 
-    # 计算叠加指标
+    # 计算叠加指标（全部在全量历史数据上计算，避免短周期档位左侧预热空白）
     n = len(closes)
     overlays: dict[str, list[float | None]] = {}
 
-    # MA
+    # 全量收盘价序列（用于预热计算）
+    all_closes = [k.close for k in all_klines]
+    all_highs = [k.high for k in all_klines]
+    all_lows = [k.low for k in all_klines]
+    m_total = len(all_closes)
+    offset = m_total - n  # 全量索引 → 窗口索引的偏移
+
+    def slice_window(full: list[float | None]) -> list[float | None]:
+        """全量序列截取为窗口（右侧 n 个）；数据不足时右对齐补 None"""
+        if offset >= len(full):
+            return full
+        if offset > 0:
+            return full[offset:]
+        # 全量比窗口短：右对齐，前面补 None
+        return [None] * (-offset) + full
+
+    # MA5/10/20/60（全量计算后截取）
     for period, key in [(5, "ma5"), (10, "ma10"), (20, "ma20"), (60, "ma60")]:
-        ma_vals: list[float | None] = [None] * n
-        for i in range(period - 1, n):
-            ma_vals[i] = round(sum(closes[i - period + 1:i + 1]) / period, 2)
-        overlays[key] = ma_vals
+        ma_full: list[float | None] = [None] * m_total
+        for i in range(period - 1, m_total):
+            ma_full[i] = round(sum(all_closes[i - period + 1:i + 1]) / period, 2)
+        overlays[key] = slice_window(ma_full)
 
-    # BBI
-    bbi_vals: list[float | None] = [None] * n
-    for i in range(23, n):  # BBI 需要 MA3/MA6/MA12/MA24
-        ma3 = sum(closes[i - 2:i + 1]) / 3
-        ma6 = sum(closes[i - 5:i + 1]) / 6
-        ma12 = sum(closes[i - 11:i + 1]) / 12
-        ma24 = sum(closes[i - 23:i + 1]) / 24
-        bbi_vals[i] = round((ma3 + ma6 + ma12 + ma24) / 4, 2)
-    overlays["bbi"] = bbi_vals
+    # MA6（通达信主图紫线）+ MA24 分段（绿/青）
+    ma6_full: list[float | None] = [None] * m_total
+    for i in range(5, m_total):
+        ma6_full[i] = round(sum(all_closes[i - 5:i + 1]) / 6, 2)
+    overlays["ma6"] = slice_window(ma6_full)
 
-    # 布林带
-    boll_mid: list[float | None] = [None] * n
-    boll_upper: list[float | None] = [None] * n
-    boll_lower: list[float | None] = [None] * n
-    for i in range(19, n):
-        window = closes[i - 19:i + 1]
+    ma24_full: list[float | None] = [None] * m_total
+    for i in range(23, m_total):
+        ma24_full[i] = round(sum(all_closes[i - 23:i + 1]) / 24, 2)
+    ma24_green_full: list[float | None] = [None] * m_total
+    ma24_cyan_full: list[float | None] = [None] * m_total
+    for i in range(23, m_total):
+        v = ma24_full[i]
+        b = (all_closes[i] - v) / v * 100 if v else 0
+        if b < 0:
+            ma24_green_full[i] = v
+        elif b < 5:
+            ma24_cyan_full[i] = v
+    overlays["ma24_green"] = slice_window(ma24_green_full)
+    overlays["ma24_cyan"] = slice_window(ma24_cyan_full)
+
+    # BBI（全量计算后截取）
+    bbi_full: list[float | None] = [None] * m_total
+    for i in range(23, m_total):
+        ma3 = sum(all_closes[i - 2:i + 1]) / 3
+        ma6 = sum(all_closes[i - 5:i + 1]) / 6
+        ma12 = sum(all_closes[i - 11:i + 1]) / 12
+        ma24 = sum(all_closes[i - 23:i + 1]) / 24
+        bbi_full[i] = round((ma3 + ma6 + ma12 + ma24) / 4, 2)
+    overlays["bbi"] = slice_window(bbi_full)
+
+    # 布林带（全量计算后截取）
+    boll_mid_full: list[float | None] = [None] * m_total
+    boll_upper_full: list[float | None] = [None] * m_total
+    boll_lower_full: list[float | None] = [None] * m_total
+    for i in range(19, m_total):
+        window = all_closes[i - 19:i + 1]
         mid = sum(window) / 20
         std = (sum((x - mid) ** 2 for x in window) / 20) ** 0.5
-        boll_mid[i] = round(mid, 2)
-        boll_upper[i] = round(mid + 2 * std, 2)
-        boll_lower[i] = round(mid - 2 * std, 2)
-    overlays["boll_mid"] = boll_mid
-    overlays["boll_upper"] = boll_upper
-    overlays["boll_lower"] = boll_lower
+        boll_mid_full[i] = round(mid, 2)
+        boll_upper_full[i] = round(mid + 2 * std, 2)
+        boll_lower_full[i] = round(mid - 2 * std, 2)
+    overlays["boll_mid"] = slice_window(boll_mid_full)
+    overlays["boll_upper"] = slice_window(boll_upper_full)
+    overlays["boll_lower"] = slice_window(boll_lower_full)
 
-    # 白线 / 黄线（双线战法）
+    # 白线 / 黄线（双线战法）——O(n) 全序列一次性递推，替代逐点 O(n²) 重算
     try:
-        white_line = []
-        yellow_line = []
-        for i in range(len(all_klines) - days, len(all_klines)):
-            try:
-                white_val = calculate_zg_white(all_klines, i)
-                yellow_val = calculate_dg_yellow(all_klines, i)
-                white_line.append(round(white_val, 2) if white_val else None)
-                yellow_line.append(round(yellow_val, 2) if yellow_val else None)
-            except Exception:
-                white_line.append(None)
-                yellow_line.append(None)
-        overlays["white_line"] = white_line
-        overlays["yellow_line"] = yellow_line
+        from modules.indicators.price_patterns import (
+            calculate_zg_white_series, calculate_dg_yellow_series,
+        )
+        white_full: list[float] = calculate_zg_white_series(all_klines)
+        yellow_full: list[float] = calculate_dg_yellow_series(all_klines)
+        overlays["white_line"] = [round(v, 2) if v else None for v in slice_window(white_full)]
+        overlays["yellow_line"] = [round(v, 2) if v else None for v in slice_window(yellow_full)]
     except Exception:
         logger.warning("白线/黄线计算失败: %s", ts_code, exc_info=True)
-        overlays["white_line"] = [None] * days
-        overlays["yellow_line"] = [None] * days
+        overlays["white_line"] = [None] * n
+        overlays["yellow_line"] = [None] * n
 
     # ── KDJ 时间序列 ── 用全量历史数据计算
     kdj_k: list[float | None] = [None] * n
@@ -249,18 +329,18 @@ def get_kline_chart_data(ts_code: str, days: int = 120) -> dict[str, Any]:
     except Exception:
         logger.warning("砖型图计算失败: %s", ts_code, exc_info=True)
 
-    # 信号标注
+    # 信号标注（走共享缓存，固定 min(days,120) 窗口，避免 250 日档位 O(n²) 重算）
     signal_markers = []
     try:
-        signals = detect_all_strategies(ts_code, days=days)
+        signals = _get_cached_signals(ts_code, days)
         date_set = set(dates)
         for s in signals[:30]:  # 最多取 30 个信号
-            if s.trade_date in date_set:
+            if s.get("date") in date_set:
                 signal_markers.append({
-                    "date": s.trade_date,
-                    "type": s.strategy.value,
-                    "price": s.price or 0,
-                    "action": s.action,
+                    "date": s["date"],
+                    "type": s.get("strategy", ""),
+                    "price": s.get("price") or 0,
+                    "action": s.get("action", ""),
                 })
     except Exception:
         logger.warning("信号标注获取失败: %s", ts_code, exc_info=True)
@@ -333,12 +413,110 @@ def get_kline_chart_data(ts_code: str, days: int = 120) -> dict[str, Any]:
         avg = sum(window) / len(window)
         breathing_wave.append(round(avg, 2))
 
+    # 换手率补源（2026-08-16）：daily_kline 无 turnover 字段，
+    # 从 daily_valuation 按 (ts_code, trade_date) 左连补齐，供图表副图与统计卡显示。
+    turnovers: list[float] = []
+    if dates:
+        try:
+            from modules.database import get_connection
+            with get_connection() as conn:
+                conn.row_factory = __import__("sqlite3").Row
+                rows = conn.execute(
+                    "SELECT trade_date, turnover FROM daily_valuation "
+                    "WHERE ts_code = ? AND trade_date >= ? AND trade_date <= ?",
+                    (ts_code, dates[0], dates[-1]),
+                ).fetchall()
+            turnover_map = {r["trade_date"]: r["turnover"] for r in rows if r["turnover"]}
+            if turnover_map:
+                turnovers = [turnover_map.get(d, 0.0) for d in dates]
+            else:
+                turnovers = [0.0] * len(dates)
+        except Exception:
+            logger.warning("换手率补源失败 %s", ts_code, exc_info=True)
+            turnovers = [0.0] * len(dates)
+    else:
+        turnovers = []
+
+    # ── 逐日指标序列（供技术指标卡/评分卡/雷达随主图悬停联动）──
+    # 各指标最大预热窗口（RSI/KDJ 递推收敛 + BBI 24 + DMI 滚动），
+    # 超过后截断最近 WARMUP 根计算，避免逐日对增长前缀重算的 O(n²)
+    indicator_series: dict[str, Any] = {
+        "rsi": {"rsi6": [], "rsi12": [], "rsi24": []},
+        "wr": {"wr5": [], "wr10": []},
+        "vol_ratio": [],
+        "dmi": {"plus": [], "minus": [], "adx": []},
+        "sell_score": [],
+        "score": {"total": [], "b1": [], "trend": [], "volume": [], "risk": [], "reasons": [], "warnings": []},
+    }
+    try:
+        from modules.indicators import calculate_rsi_multi, calculate_wr_multi, calculate_vol_ratio
+        from modules.indicators.price_patterns import calculate_dmi
+        from modules.indicators.volume_patterns import calculate_sell_score
+        from modules.screener.engine import analyze_stock as score_stock_engine
+
+        WARMUP = 60
+        SCORE_WINDOW = 150
+        n_total = len(all_klines)
+        for i in range(days):
+            idx = n_total - days + i
+            window = all_klines[max(0, idx + 1 - WARMUP): idx + 1]
+            try:
+                rsi6, rsi12, rsi24 = calculate_rsi_multi(window)
+                wr5, wr10 = calculate_wr_multi(window)
+                vr = calculate_vol_ratio(window)
+                dmi_plus, dmi_minus, adx = calculate_dmi(window)
+                sell_score, _, _ = calculate_sell_score(window)
+            except Exception:
+                rsi6 = rsi12 = rsi24 = wr5 = wr10 = vr = dmi_plus = dmi_minus = adx = None
+                sell_score = None
+            indicator_series["rsi"]["rsi6"].append(rsi6)
+            indicator_series["rsi"]["rsi12"].append(rsi12)
+            indicator_series["rsi"]["rsi24"].append(rsi24)
+            indicator_series["wr"]["wr5"].append(wr5)
+            indicator_series["wr"]["wr10"].append(wr10)
+            indicator_series["vol_ratio"].append(vr)
+            indicator_series["dmi"]["plus"].append(dmi_plus)
+            indicator_series["dmi"]["minus"].append(dmi_minus)
+            indicator_series["dmi"]["adx"].append(adx)
+            indicator_series["sell_score"].append(sell_score)
+
+            # 综合评分逐日序列（滑动窗口截断，供综合评分卡/雷达随悬停联动）
+            score_window = all_klines[max(0, idx + 1 - SCORE_WINDOW): idx + 1]
+            if len(score_window) >= 20:
+                try:
+                    sc = score_stock_engine(ts_code, score_window)
+                    indicator_series["score"]["total"].append(round(sc.score, 1))
+                    indicator_series["score"]["b1"].append(round(sc.b1_score, 1))
+                    indicator_series["score"]["trend"].append(round(sc.trend_score, 1))
+                    indicator_series["score"]["volume"].append(round(sc.volume_score, 1))
+                    indicator_series["score"]["risk"].append(round(sc.risk_score, 1))
+                    indicator_series["score"]["reasons"].append(list(sc.reasons))
+                    indicator_series["score"]["warnings"].append(list(sc.warnings))
+                except Exception:
+                    for arr in indicator_series["score"].values():
+                        arr.append(None)
+            else:
+                for arr in indicator_series["score"].values():
+                    arr.append(None)
+    except Exception:
+        logger.warning("逐日指标序列计算失败: %s", ts_code, exc_info=True)
+        indicator_series = {
+            "rsi": {"rsi6": [], "rsi12": [], "rsi24": []},
+            "wr": {"wr5": [], "wr10": []},
+            "vol_ratio": [],
+            "dmi": {"plus": [], "minus": [], "adx": []},
+            "sell_score": [],
+            "score": {"total": [], "b1": [], "trend": [], "volume": [], "risk": [], "reasons": [], "warnings": []},
+        }
+
     return {
         "ts_code": ts_code,
         "name": name,
+        "industry": _get_stock_industry(ts_code),
         "dates": dates,
         "ohlc": ohlc,
         "volumes": volumes,
+        "turnovers": turnovers,
         "pct_chgs": pct_chgs,
         "overlays": overlays,
         "signal_markers": signal_markers,
@@ -348,16 +526,14 @@ def get_kline_chart_data(ts_code: str, days: int = 120) -> dict[str, Any]:
         "waves_sequence": waves_sequence,
         "kirin_sequence": kirin_sequence,
         "breathing_wave": breathing_wave,
+        "indicator_series": indicator_series,
     }
 
 
 
 def get_signals(ts_code: str, days: int = 120) -> list[dict]:
-    """获取战法信号列表"""
-    from modules.strategies import detect_all_strategies
-
-    signals = detect_all_strategies(ts_code, days=days)
-    return _build_signals(signals)
+    """获取战法信号列表（共享缓存，启动时已由 analyze/klines 填充）"""
+    return _get_cached_signals(ts_code, days)
 
 
 def get_score(ts_code: str) -> dict:
@@ -382,6 +558,22 @@ def _get_stock_name(ts_code: str) -> str:
     except Exception:
         pass
     return ts_code
+
+
+def _get_stock_industry(ts_code: str) -> str:
+    """获取股票所属行业/地域板块（对应通达信 HYBLOCK/DYBLOCK 标注）"""
+    try:
+        from modules.database import get_connection
+        with get_connection() as conn:
+            row = conn.execute(
+                "SELECT industry, area FROM stock_basic WHERE ts_code=?", (ts_code,)
+            ).fetchone()
+            if row:
+                parts = [p for p in (row["industry"], row["area"]) if p]
+                return " · ".join(parts)
+    except Exception:
+        pass
+    return ""
 
 
 def _build_indicators(result, diagnosis) -> dict:
