@@ -13,7 +13,7 @@ data/
 *.db
 *.sqlite
 
-# 原始语料（体积大、版权问题，仓库中仅保留调研提炼文件和 SKILL.md）
+# 原始语料（体积大、版权问题，仓库中仅保留调研提炼文件�?SKILL.md�?
 references/sources/
 
 # Python
@@ -64,7 +64,7 @@ GEMINI.md
 .omo/
 .kimi/
 
-# 根目录空 lockfile（真正的在 frontend/ 目录）
+# 根目录空 lockfile（真正的�?frontend/ 目录�?
 /package-lock.json
 
 # 对话实录（临时文件，不入库）
@@ -74,7 +74,7 @@ GEMINI.md
 logs/*.log
 logs/*.jsonl
 
-# 二进制工具（应通过包管理器安装）
+# 二进制工具（应通过包管理器安装�?
 actionlint
 
 # Darwin self-optimizer artifacts (regenerated each run)
@@ -84,7 +84,7 @@ logs/self_optimizer_state.json
 
 .worktrees/
 
-# 工作区临时文件
+# 工作区临时文�?
 .workbuddy/
 
 # 前端构建产物
@@ -107,9 +107,12 @@ rust/target/
 # 浏览器自检缓存
 .playwright-mcp/
 
-# 仪表盘 / 截图测试产物
+# 仪表�?/ 截图测试产物
 dashboard*.png
 stock-analysis.png
 
-# 根目录 uv.lock（子包自有锁文件；2026-08-05 加入）
+# 根目�?uv.lock（子包自有锁文件�?026-08-05 加入�?
 /uv.lock
+
+# Vibe-Trading reference source (cloned for absorption study, not part of repo)
+.scratch/vibe-trading/
