@@ -9,7 +9,7 @@ def calculate_zg_white(klines: list[DailyData]) -> float:
 
     ⚠️ 2026-09-12 修正：周期由 10 改为 12。
     依据：30 张 Z 哥软件参考图的标题栏打印值逐项校准
-    （`.scratch/wayfinder-vibe-distill/artifacts/ref-images-calibration.md`）：
+    （`books/zettaranc/reference-images/ref-images-calibration.md`）：
     - (12,12) → **30/30 精确吻合**（|差| < 0.01），均值绝对误差 0.0057
     - (10,10) → 仅 2/30 精确，且**系统性偏高**（均值 +0.26，最大 +1.68）
     - 误差曲线在 n=12 处是**尖锐极小值**：n=11 → 0.134、**n=12 → 0.0057**、n=13 → 0.129
