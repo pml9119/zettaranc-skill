@@ -75,13 +75,14 @@ def _precompute_line_series(klines: list[DailyData], start: int) -> tuple[dict[i
     closes = [k.close for k in klines]
     whites: dict[int, float] = {}
     yellows: dict[int, float] = {}
-    ema1_series = calculate_ema_series(closes, 10)
-    ema2_series = calculate_ema_series(ema1_series, 10)
+    ema1_series = calculate_ema_series(closes, 12)
+    ema2_series = calculate_ema_series(ema1_series, 12)
 
     for i in range(max(0, start), len(klines)):
         n = i + 1
-        # 白线：EMA(EMA(C, 10), 10)，与 calculate_zg_white 完全一致。
-        whites[i] = round(ema2_series[i], 2) if n >= 10 else 0
+        # 白线：EMA(EMA(C, 12), 12)，与 calculate_zg_white 完全一致。
+        # （2026-09-12 周期由 10 改为 12，依据 30 张参考图标题栏逐项校准，30/30 精确）
+        whites[i] = round(ema2_series[i], 2) if n >= 12 else 0
         # 黄线：calculate_dg_yellow 同款分支
         if n < 114:
             yellows[i] = 0

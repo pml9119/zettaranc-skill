@@ -358,15 +358,16 @@ class TestDoubleLine:
         prices = [100 + i * i * 0.1 for i in range(30)]
         klines = [make_kline(price=price, date=f"202601{i + 1:02d}") for i, price in enumerate(prices)]
 
-        alpha = 2 / 11
+        # 2026-09-12：周期由 10 修正为 12（30 张参考图标题栏校准，n=12 时 30/30 精确）
+        alpha = 2 / 13
         ema1 = prices[0]
         ema2 = ema1
         for price in prices[1:]:
             ema1 = price * alpha + ema1 * (1 - alpha)
             ema2 = ema1 * alpha + ema2 * (1 - alpha)
 
-        wrong_single_ema = prices[-10]
-        for price in prices[-9:]:
+        wrong_single_ema = prices[-12]
+        for price in prices[-11:]:
             wrong_single_ema = price * alpha + wrong_single_ema * (1 - alpha)
 
         white = calculate_zg_white(klines)

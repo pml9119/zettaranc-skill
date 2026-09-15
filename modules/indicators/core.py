@@ -140,7 +140,7 @@ class IndicatorResult:
     vol_ratio: float = 0  # 量比 = 当前量 / 5日均量
 
     # ========== Z哥双线战法 ==========
-    zg_white: float = 0  # Z哥白线 = EMA(EMA(C,10),10)
+    zg_white: float = 0  # Z哥白线 = EMA(EMA(C,12),12)（2026-09-12 由周期 10 修正为 12）
     dg_yellow: float = 0  # 大哥线 = (MA14+MA28+MA57+MA114)/4
     is_gold_cross: bool = False  # 金叉（白线上穿大哥线）
     is_dead_cross: bool = False  # 死叉（白线下穿大哥线）

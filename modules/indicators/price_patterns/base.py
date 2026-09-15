@@ -3,15 +3,22 @@ from ..core import DailyData, calculate_ma, calculate_ema_series
 
 def calculate_zg_white(klines: list[DailyData]) -> float:
     """
-    计算 Z哥白线 = EMA(EMA(C,10),10)
+    计算 Z哥白线 = EMA(EMA(C,12),12)
 
-    双重平滑后的短期动能线
+    双重平滑后的短期动能线。
+
+    ⚠️ 2026-09-12 修正：周期由 10 改为 12。
+    依据：30 张 Z 哥软件参考图的标题栏打印值逐项校准
+    （`.scratch/wayfinder-vibe-distill/artifacts/ref-images-calibration.md`）：
+    - (12,12) → **30/30 精确吻合**（|差| < 0.01），均值绝对误差 0.0057
+    - (10,10) → 仅 2/30 精确，且**系统性偏高**（均值 +0.26，最大 +1.68）
+    - 误差曲线在 n=12 处是**尖锐极小值**：n=11 → 0.134、**n=12 → 0.0057**、n=13 → 0.129
     """
-    if len(klines) < 10:
+    if len(klines) < 12:
         return 0
     closes = [k.close for k in klines]
-    ema1_series = calculate_ema_series(closes, 10)
-    ema2_series = calculate_ema_series(ema1_series, 10)
+    ema1_series = calculate_ema_series(closes, 12)
+    ema2_series = calculate_ema_series(ema1_series, 12)
     return round(ema2_series[-1], 2) if ema2_series else 0
 
 
@@ -19,30 +26,30 @@ def calculate_zg_white_series(klines: list[DailyData]) -> list[float]:
     """
     计算白线全序列（O(n) 一次递推），结果与 calculate_zg_white 完全一致：
 
-    真·双 EMA 全历史递推（2026-08-16 对齐通达信口径）：
-    - i < 9：0
-    - i >= 9：EMA(EMA(C[0:i+1],10) 序列, 10)，序列为全序列的
+    真·双 EMA 全历史递推（2026-08-16 对齐通达信口径；2026-09-12 周期 10→12）：
+    - i < 11：0
+    - i >= 11：EMA(EMA(C[0:i+1],12) 序列, 12)，序列为全序列的
     """
     n = len(klines)
     if n == 0:
         return []
     closes = [k.close for k in klines]
     out = [0.0] * n
-    if n < 10:
+    if n < 12:
         return out
 
-    k = 2 / 11
-    # 第一层 EMA(10) 全序列
+    k = 2 / 13
+    # 第一层 EMA(12) 全序列
     e1_list = [closes[0]]
     e1 = closes[0]
     for c in closes[1:]:
         e1 = c * k + e1 * (1 - k)
         e1_list.append(e1)
-    # 第二层 EMA(10)，作用于 E1 序列全历史递推，初值=E1 首值
+    # 第二层 EMA(12)，作用于 E1 序列全历史递推，初值=E1 首值
     e2 = e1_list[0]
     for i in range(1, n):
         e2 = e1_list[i] * k + e2 * (1 - k)
-        if i >= 9:
+        if i >= 11:
             out[i] = round(e2, 2)
     return out
 
