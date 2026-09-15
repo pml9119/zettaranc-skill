@@ -138,6 +138,50 @@ def calculate_brick_series(klines: list[DailyData]) -> list[float | None]:
     return series
 
 
+# ── 砖色三态（对齐 Z 哥通达信软件口径，2026-09-12 新增黄砖）──────────────
+BRICK_GREEN = -1   # 下跌动量
+BRICK_YELLOW = 0   # ★ 砖买入信号（转折点）
+BRICK_RED = 1      # 上涨动量
+
+
+def brick_color_at(values: list[float | None], i: int) -> int:
+    """
+    单点砖色（三态）。
+
+    口径（对齐 Z 哥通达信软件）：
+    - ``BRICK_GREEN`` (-1)：砖值 < 前一日 → 下跌动量
+    - ``BRICK_YELLOW`` (0)：**砖买入信号** —— 砖值由降转升的**转折点**（第一块红砖）
+    - ``BRICK_RED`` (+1)：砖值 >= 前一日 → 上涨动量
+
+    ⚠️ 2026-09-12 新增黄砖态。此前只有 ±1 两态，**黄砖在后端数学上不可达**，
+    导致软件图上的黄砖在同一位置被我们画成红砖（9/9 系统性不一致）。依据：
+
+    - **语料规则**：``[20260325] 回放3 00:02:48``「定式一就是 N 型起跳…每次都要买到
+      **转折点这个位置的红砖**」；``00:40:36``「**红砖的第二块儿的早盘买入**」。
+      知识库 `strategies/choppy-market-sop.md:197`：「绝不在绿砖阶段买入：等红砖再动」。
+      （注：语料中「黄砖」**0 命中** —— 黄是软件的**呈现色**，不是语料术语。）
+    - **9 张砖型图参考图的十字线（信号日）9/9 全部落在转折点上**：
+      ``brick[i] >= brick[i-1] and brick[i-1] < brick[i-2]``。
+    - 软件把该转折点画成**黄色**（9/9 图上为黄砖）。
+    """
+    v = values[i]
+    if v is None or i <= 0 or values[i - 1] is None:
+        return BRICK_RED  # 与旧实现一致：默认红
+    prev = values[i - 1]
+    assert prev is not None
+    if v < prev:
+        return BRICK_GREEN
+    # 转折点：前一根在下降，本根止跌转升 → 砖买入信号
+    if i >= 2 and values[i - 2] is not None and prev < values[i - 2]:
+        return BRICK_YELLOW
+    return BRICK_RED
+
+
+def calculate_brick_colors(series: list[float | None]) -> list[int | None]:
+    """全序列砖色（三态，见 :func:`brick_color_at`）。砖值未定义处返回 ``None``。"""
+    return [None if v is None else brick_color_at(series, i) for i, v in enumerate(series)]
+
+
 def calculate_brick_history(klines: list[DailyData], lookback: int = 20) -> tuple[str, int]:
     """
     计算砖型图趋势（连续红砖/绿砖数量）

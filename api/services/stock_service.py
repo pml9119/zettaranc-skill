@@ -312,18 +312,16 @@ def get_kline_chart_data(ts_code: str, days: int = 120) -> dict[str, Any]:
     brick_values: list[float | None] = [None] * n
     brick_colors: list[int | None] = [None] * n
     try:
-        from modules.indicators.price_patterns import calculate_brick_value
+        from modules.indicators.price_patterns import brick_color_at, calculate_brick_value
         for i in range(n):
             idx = len(all_klines) - days + i
             sub_klines = all_klines[:idx + 1]
             try:
                 val = calculate_brick_value(sub_klines)
-                brick_values[i] = round(val, 2) if val else None
-                # 判断红绿：大于等于前一天为红(1)，小于为绿(-1)
-                if i > 0 and brick_values[i] is not None and brick_values[i - 1] is not None:
-                    brick_colors[i] = 1 if brick_values[i] >= brick_values[i - 1] else -1
-                else:
-                    brick_colors[i] = 1 # 默认红色
+                # 不能写 `if val`——真值 0 会被误吞成 None（2026-09-12 修）
+                brick_values[i] = round(val, 2) if val is not None else None
+                # 三态：-1 绿 / 0 黄(=砖买入转折点) / +1 红，口径见 brick.brick_color_at
+                brick_colors[i] = brick_color_at(brick_values, i)
             except Exception:
                 pass
     except Exception:

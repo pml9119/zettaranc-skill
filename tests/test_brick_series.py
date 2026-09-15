@@ -10,6 +10,11 @@ import pytest
 
 from modules.indicators.core import DailyData
 from modules.indicators.price_patterns.brick import (
+    BRICK_GREEN,
+    BRICK_RED,
+    BRICK_YELLOW,
+    brick_color_at,
+    calculate_brick_colors,
     calculate_brick_series,
     calculate_brick_value,
     calculate_brick_history,
@@ -174,3 +179,60 @@ class TestCoexistence:
         assert callable(calculate_brick_value)
         assert calculate_brick_history(k)[0] in ("RED", "GREEN", "NEUTRAL")
         assert isinstance(detect_four_brick_system(k), dict)
+
+
+# ---------------------------------------------------------------- 砖色三态（2026-09-12 新增）
+
+class TestBrickColors:
+    """砖色三态：-1 绿 / 0 黄(★砖买入转折点) / +1 红
+
+    依据：9 张砖型图参考图的十字线（信号日）**9/9 全部落在转折点**上
+    （``brick[i] >= brick[i-1] and brick[i-1] < brick[i-2]``），
+    而软件把该转折点画成**黄色**；此前后端只产 ±1，黄砖数学上不可达。
+    """
+
+    def test_constants(self):
+        assert (BRICK_GREEN, BRICK_YELLOW, BRICK_RED) == (-1, 0, 1)
+
+    def test_yellow_is_the_turn_point(self):
+        """由降转升的第一根 = 黄（砖买入）"""
+        s = [None, 10.0, 8.0, 9.0, 9.5]
+        c = calculate_brick_colors(s)
+        assert c[3] == BRICK_YELLOW, "转折点必须是黄"
+        assert c[4] == BRICK_RED, "转折点之后继续升 → 红"
+
+    def test_green_on_decline(self):
+        s = [None, 10.0, 9.0, 8.0]
+        c = calculate_brick_colors(s)
+        assert c[2] == BRICK_GREEN and c[3] == BRICK_GREEN
+
+    def test_no_yellow_without_a_prior_decline(self):
+        """单调上升序列不应出现黄砖"""
+        s = [None] + [float(i) for i in range(1, 12)]
+        c = calculate_brick_colors(s)
+        assert BRICK_YELLOW not in c
+
+    def test_none_alignment(self):
+        """砖值未定义处颜色也必须是 None，且长度对齐"""
+        s = [None, None, None, 5.0, 6.0]
+        c = calculate_brick_colors(s)
+        assert len(c) == len(s)
+        assert c[:3] == [None, None, None]
+
+    def test_default_red_at_series_head(self):
+        """序列头部（无前值可比）沿用旧行为：默认红"""
+        s = [None, 5.0, 6.0]
+        assert brick_color_at(s, 1) == BRICK_RED
+
+    def test_yellow_iff_turn_point_on_real_series(self):
+        """黄 ⟺ 转折点，在全序列上逐点校验"""
+        s = calculate_brick_series(_mk(_wave(120)))
+        c = calculate_brick_colors(s)
+        checked = 0
+        for i in range(2, len(s)):
+            if s[i] is None or s[i - 1] is None or s[i - 2] is None:
+                continue
+            checked += 1
+            is_turn = s[i] >= s[i - 1] and s[i - 1] < s[i - 2]
+            assert (c[i] == BRICK_YELLOW) == is_turn, f"i={i} 与转折点定义不符"
+        assert checked > 100, f"校验点太少（{checked}），测试没意义"

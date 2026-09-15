@@ -29,6 +29,11 @@ from .bull_rope import detect_bull_rope
 from .sandglass import calculate_sandglass_score
 
 from .brick import (
+    BRICK_GREEN,
+    BRICK_RED,
+    BRICK_YELLOW,
+    brick_color_at,
+    calculate_brick_colors,
     calculate_brick_value,
     calculate_brick_series,
     calculate_brick_history,
@@ -67,6 +72,11 @@ __all__ = [
     "calculate_dmi",
     "calculate_brick_value",
     "calculate_brick_series",
+    "calculate_brick_colors",
+    "brick_color_at",
+    "BRICK_GREEN",
+    "BRICK_YELLOW",
+    "BRICK_RED",
     "calculate_brick_history",
     "detect_brick_trend",
     "detect_fanbao",
