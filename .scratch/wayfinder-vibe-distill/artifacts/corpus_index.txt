@@ -1,0 +1,307 @@
+﻿====SEG==== SESSION:20250423 SEG:20250423第二部分(21点42分)_summary TSIZE:86161
+====SEG==== SESSION:20250423 SEG:20250423第三部分（23：10）_summary TSIZE:41983
+====SEG==== SESSION:20250423 SEG:20250423第四部分（23：47）_summary TSIZE:13191
+====SEG==== SESSION:20250423 SEG:20250423第五部分（00：01）票！_summary TSIZE:6822
+====SEG==== SESSION:20250423 SEG:20250423第一部分_summary TSIZE:202499
+====SEG==== SESSION:20250430 SEG:20250430(20点)(1)_summary TSIZE:55929
+====SEG==== SESSION:20250430 SEG:20250430(20点)_summary TSIZE:55929
+====SEG==== SESSION:20250430 SEG:20250430(21点)(1)_summary TSIZE:49760
+====SEG==== SESSION:20250430 SEG:20250430(21点)_summary TSIZE:49760
+====SEG==== SESSION:20250430 SEG:20250430(22点）_summary TSIZE:61926
+====SEG==== SESSION:20250430 SEG:20250430(23点)_summary TSIZE:51408
+====SEG==== SESSION:20250430 SEG:20250430(零点)_summary TSIZE:38639
+====SEG==== SESSION:20250507 SEG:20250507(10点）_summary TSIZE:58388
+====SEG==== SESSION:20250507 SEG:20250507(11点）_summary TSIZE:62800
+====SEG==== SESSION:20250507 SEG:20250507(12点）_summary TSIZE:60897
+====SEG==== SESSION:20250507 SEG:20250507(8点)_summary TSIZE:52932
+====SEG==== SESSION:20250507 SEG:20250507(9点）_summary TSIZE:56958
+====SEG==== SESSION:20250507 SEG:20250507(结尾）_summary TSIZE:6079
+====SEG==== SESSION:20250514 SEG:20250514第二部分_summary TSIZE:63876
+====SEG==== SESSION:20250514 SEG:20250514第三部分_summary TSIZE:55077
+====SEG==== SESSION:20250514 SEG:20250514第四部分_summary TSIZE:54521
+====SEG==== SESSION:20250514 SEG:20250514第五部分_summary TSIZE:51188
+====SEG==== SESSION:20250514 SEG:20250514第一部分_summary TSIZE:60850
+====SEG==== SESSION:20250531端午特训第一期 SEG:直播回放_2025-05-31_19-58-11_summary TSIZE:109725
+====SEG==== SESSION:20250531端午特训第一期 SEG:直播回放_2025-05-31_21-58-15_summary TSIZE:107052
+====SEG==== SESSION:20250531端午特训第一期 SEG:直播回放_2025-05-31_23-58-19_summary TSIZE:79807
+====SEG==== SESSION:20250601端午特训第二期 SEG:直播回放_2025-06-01_19-59-18_summary TSIZE:46069
+====SEG==== SESSION:20250601端午特训第二期 SEG:直播回放_2025-06-01_20-49-56_summary TSIZE:103644
+====SEG==== SESSION:20250601端午特训第二期 SEG:直播回放_2025-06-01_22-50-00_summary TSIZE:112102
+====SEG==== SESSION:20250601端午特训第二期 SEG:直播回放_2025-06-02_00-50-04_summary TSIZE:32108
+====SEG==== SESSION:20250606充电直播 SEG:直播回放_2025-06-06_00-37-35_summary TSIZE:60367
+====SEG==== SESSION:20250611特训（周三晚八） SEG:直播回放_2025-06-11_19-59-34_summary TSIZE:113946
+====SEG==== SESSION:20250611特训（周三晚八） SEG:直播回放_2025-06-11_21-59-41_summary TSIZE:102858
+====SEG==== SESSION:20250611特训（周三晚八） SEG:直播回放_2025-06-11_23-59-45_summary TSIZE:85688
+====SEG==== SESSION:20250618创新药五大方向（周三晚九开 SEG:直播回放_2025-06-18_20-50-20_summary TSIZE:105049
+====SEG==== SESSION:20250618创新药五大方向（周三晚九开 SEG:直播回放_2025-06-18_22-50-24_summary TSIZE:118226
+====SEG==== SESSION:20250618创新药五大方向（周三晚九开 SEG:直播回放_2025-06-19_00-50-28_summary TSIZE:55956
+====SEG==== SESSION:20250625特训坑里起好货 SEG:直播回放_2025-06-25_21-44-40_summary TSIZE:114831
+====SEG==== SESSION:20250625特训坑里起好货 SEG:直播回放_2025-06-25_23-44-44_summary TSIZE:89445
+====SEG==== SESSION:20250626填坑补充 SEG:直播回放_2025-06-26_22-39-17_summary TSIZE:127239
+====SEG==== SESSION:20250702（周三晚8） SEG:直播回放_2025-07-02_20-00-19_summary TSIZE:116570
+====SEG==== SESSION:20250702（周三晚8） SEG:直播回放_2025-07-02_22-00-23_summary TSIZE:98820
+====SEG==== SESSION:20250702（周三晚8） SEG:直播回放_2025-07-03_00-00-27_summary TSIZE:76157
+====SEG==== SESSION:20250709大富翁之夜交易的节奏（晚八开） SEG:直播回放_2025-07-09_20-00-15_summary TSIZE:108719
+====SEG==== SESSION:20250709大富翁之夜交易的节奏（晚八开） SEG:直播回放_2025-07-09_22-00-19_summary TSIZE:100476
+====SEG==== SESSION:20250709大富翁之夜交易的节奏（晚八开） SEG:直播回放_2025-07-10_00-00-23_summary TSIZE:78304
+====SEG==== SESSION:20250712加餐聊会儿 SEG:直播回放_2025-07-12_20-44-55_summary TSIZE:89947
+====SEG==== SESSION:20250712加餐聊会儿 SEG:直播回放_2025-07-12_22-44-59_summary TSIZE:59948
+====SEG==== SESSION:20250716百战案例砸实基本功（晚八点半开） SEG:直播回放_2025-07-16_20-12-21_summary TSIZE:103787
+====SEG==== SESSION:20250716百战案例砸实基本功（晚八点半开） SEG:直播回放_2025-07-16_22-12-25_summary TSIZE:103763
+====SEG==== SESSION:20250716百战案例砸实基本功（晚八点半开） SEG:直播回放_2025-07-17_00-12-29_summary TSIZE:140909
+====SEG==== SESSION:20250720闭门会bbb SEG:直播回放_2025-07-20_23-15-13_summary TSIZE:102784
+====SEG==== SESSION:20250720闭门会bbb SEG:直播回放_2025-07-21_01-15-17_summary TSIZE:58761
+====SEG==== SESSION:20250723麒麟会如何运作一个票？（周三晚八） SEG:直播回放_2025-07-23_20-10-25_summary TSIZE:103198
+====SEG==== SESSION:20250723麒麟会如何运作一个票？（周三晚八） SEG:直播回放_2025-07-23_22-10-29_summary TSIZE:95849
+====SEG==== SESSION:20250723麒麟会如何运作一个票？（周三晚八） SEG:直播回放_2025-07-24_00-10-33_summary TSIZE:93196
+====SEG==== SESSION:20250730重要的防卖飞策略（周三晚八） SEG:直播回放_2025-07-30_20-00-34_summary TSIZE:99986
+====SEG==== SESSION:20250730重要的防卖飞策略（周三晚八） SEG:直播回放_2025-07-30_22-00-38_summary TSIZE:99607
+====SEG==== SESSION:20250730重要的防卖飞策略（周三晚八） SEG:直播回放_2025-07-31_00-00-42_summary TSIZE:61342
+====SEG==== SESSION:20250806大盘调整期如何找到强壮宝宝（周三晚八开） SEG:直播回放_2025-08-06_20-00-07_summary TSIZE:113694
+====SEG==== SESSION:20250806大盘调整期如何找到强壮宝宝（周三晚八开） SEG:直播回放_2025-08-06_22-03-31_summary TSIZE:107634
+====SEG==== SESSION:20250806大盘调整期如何找到强壮宝宝（周三晚八开） SEG:直播回放_2025-08-07_00-03-35_summary TSIZE:108039
+====SEG==== SESSION:20250813内部交流 SEG:直播回放_2025-08-13_20-01-04_summary TSIZE:102298
+====SEG==== SESSION:20250813内部交流 SEG:直播回放_2025-08-13_22-01-08_summary TSIZE:95003
+====SEG==== SESSION:20250813内部交流 SEG:直播回放_2025-08-14_00-01-12_summary TSIZE:67650
+====SEG==== SESSION:20250819如何买到当日最强？（周二晚八开） SEG:直播回放_2025-08-19_20-00-34_summary TSIZE:103208
+====SEG==== SESSION:20250819如何买到当日最强？（周二晚八开） SEG:直播回放_2025-08-19_22-00-38_summary TSIZE:105197
+====SEG==== SESSION:20250819如何买到当日最强？（周二晚八开） SEG:直播回放_2025-08-20_00-00-42_summary TSIZE:129543
+====SEG==== SESSION:20250824牛市未来如何逃顶？（周日晚八） SEG:10点半_summary TSIZE:49975
+====SEG==== SESSION:20250824牛市未来如何逃顶？（周日晚八） SEG:11点半_summary TSIZE:55370
+====SEG==== SESSION:20250824牛市未来如何逃顶？（周日晚八） SEG:12点半_summary TSIZE:69519
+====SEG==== SESSION:20250824牛市未来如何逃顶？（周日晚八） SEG:8点_summary TSIZE:56894
+====SEG==== SESSION:20250824牛市未来如何逃顶？（周日晚八） SEG:9点_summary TSIZE:86152
+====SEG==== SESSION:20250824牛市未来如何逃顶？（周日晚八） SEG:直播回放_2025-08-24_23-22-45_summary TSIZE:133241
+====SEG==== SESSION:20250827指数贡献策略防踏空（周三晚八） SEG:直播回放_2025-08-27_20-03-06_summary TSIZE:307923
+====SEG==== SESSION:20250831神仙打架我散如何应对？（周日晚九点半开） SEG:直播回放_2025-08-31_23-45-42_summary TSIZE:118785
+====SEG==== SESSION:20250903今天才有点儿内个意思~（周三晚八开） SEG:直播回放_2025-09-03_20-00-17_summary TSIZE:309261
+====SEG==== SESSION:20250906厦门二楼~ SEG:直播回放_2025-09-06_00-48-41_summary TSIZE:153537
+====SEG==== SESSION:20250907九月锦囊+二楼（周日晚八开） SEG:直播回放_2025-09-07_23-10-16_summary TSIZE:90505
+====SEG==== SESSION:20250907九月锦囊+二楼（周日晚八开） SEG:直播回放_2025-09-08_01-10-20_summary TSIZE:93680
+====SEG==== SESSION:20250910牛市偷懒法～（周三晚八开） SEG:直播回放_2025-09-10_20-01-05_summary TSIZE:110423
+====SEG==== SESSION:20250910牛市偷懒法～（周三晚八开） SEG:直播回放_2025-09-10_22-01-09_summary TSIZE:94066
+====SEG==== SESSION:20250910牛市偷懒法～（周三晚八开） SEG:直播回放_2025-09-11_00-01-13_summary TSIZE:135820
+====SEG==== SESSION:20250914如何做一位斗牛士？（周日晚八点十分） SEG:直播回放_2025-09-14_23-31-23_summary TSIZE:113647
+====SEG==== SESSION:20250914如何做一位斗牛士？（周日晚八点十分） SEG:直播回放_2025-09-15_01-31-27_summary TSIZE:74183
+====SEG==== SESSION:20250917主力出货的五种经典方式（周三晚八开） SEG:直播回放_2025-09-17_20-01-14_summary TSIZE:110885
+====SEG==== SESSION:20250917主力出货的五种经典方式（周三晚八开） SEG:直播回放_2025-09-17_22-01-18_summary TSIZE:107858
+====SEG==== SESSION:20250917主力出货的五种经典方式（周三晚八开） SEG:直播回放_2025-09-18_00-01-22_summary TSIZE:128015
+====SEG==== SESSION:20250922全网独家解析大A暗战！ SEG:00.03-00.26_summary TSIZE:22365
+====SEG==== SESSION:20250922全网独家解析大A暗战！ SEG:00.28-01.29 上二楼_summary TSIZE:49375
+====SEG==== SESSION:20250922全网独家解析大A暗战！ SEG:01.29-01.51 上二楼_summary TSIZE:21919
+====SEG==== SESSION:20250922全网独家解析大A暗战！ SEG:10.37-11.37_summary TSIZE:54709
+====SEG==== SESSION:20250922全网独家解析大A暗战！ SEG:23.36-00.01_summary TSIZE:23236
+====SEG==== SESSION:20250922全网独家解析大A暗战！ SEG:9.36-10.37_summary TSIZE:49503
+====SEG==== SESSION:20250922全网独家解析大A暗战！ SEG:直播回放_2025-09-22_00-27-12_summary TSIZE:71395
+====SEG==== SESSION:20250924散户都给我删掉这五种思维！（周三晚八开） SEG:直播回放_2025-09-24_20-00-59_summary TSIZE:109735
+====SEG==== SESSION:20250924散户都给我删掉这五种思维！（周三晚八开） SEG:直播回放_2025-09-24_22-01-03_summary TSIZE:108039
+====SEG==== SESSION:20250924散户都给我删掉这五种思维！（周三晚八开） SEG:直播回放_2025-09-25_00-01-07_summary TSIZE:101241
+====SEG==== SESSION:20251004双线战法的核心逻辑（10.4晚八开） SEG:直播回放_2025-10-04_20-00-33_summary TSIZE:99755
+====SEG==== SESSION:20251004双线战法的核心逻辑（10.4晚八开） SEG:直播回放_2025-10-04_22-00-37_summary TSIZE:113658
+====SEG==== SESSION:20251004双线战法的核心逻辑（10.4晚八开） SEG:直播回放_2025-10-05_00-00-41_summary TSIZE:94715
+====SEG==== SESSION:20251004双线战法的核心逻辑（10.4晚八开） SEG:直播回放_2025-10-05_02-00-45_summary TSIZE:47970
+====SEG==== SESSION:20251006三大高爆发力的B2买入法（10.6晚八） SEG:直播回放_2025-10-06_20-00-15_summary TSIZE:104503
+====SEG==== SESSION:20251006三大高爆发力的B2买入法（10.6晚八） SEG:直播回放_2025-10-06_22-00-19_summary TSIZE:85968
+====SEG==== SESSION:20251006三大高爆发力的B2买入法（10.6晚八） SEG:直播回放_2025-10-07_00-00-23_summary TSIZE:106122
+====SEG==== SESSION:20251006三大高爆发力的B2买入法（10.6晚八） SEG:直播回放_2025-10-07_02-00-27_summary TSIZE:72104
+====SEG==== SESSION:20251009闲聊 SEG:直播回放_2025-10-09_00-08-57_summary TSIZE:75693
+====SEG==== SESSION:20251012川子又来搞事情了？（周日晚八） SEG:20.02-20.37_summary TSIZE:29322
+====SEG==== SESSION:20251012川子又来搞事情了？（周日晚八） SEG:20.37-21.38_summary TSIZE:54714
+====SEG==== SESSION:20251012川子又来搞事情了？（周日晚八） SEG:21.38-22.04_summary TSIZE:21884
+====SEG==== SESSION:20251012川子又来搞事情了？（周日晚八） SEG:22.05-22.29_summary TSIZE:21900
+====SEG==== SESSION:20251012川子又来搞事情了？（周日晚八） SEG:22.30-23.06_summary TSIZE:35559
+====SEG==== SESSION:20251012川子又来搞事情了？（周日晚八） SEG:23.18-23.28_summary TSIZE:10914
+====SEG==== SESSION:20251012川子又来搞事情了？（周日晚八） SEG:二楼 1 点半_summary TSIZE:48126
+====SEG==== SESSION:20251012川子又来搞事情了？（周日晚八） SEG:二楼 12 点半_summary TSIZE:46788
+====SEG==== SESSION:20251012川子又来搞事情了？（周日晚八） SEG:直播回放_2025-10-12_23-30-49_summary TSIZE:95064
+====SEG==== SESSION:20251015关键K的重要价值（周三晚八） SEG:直播回放_2025-10-15_20-01-11_summary TSIZE:102665
+====SEG==== SESSION:20251015关键K的重要价值（周三晚八） SEG:直播回放_2025-10-15_22-01-15_summary TSIZE:91770
+====SEG==== SESSION:20251015关键K的重要价值（周三晚八） SEG:直播回放_2025-10-16_00-01-19_summary TSIZE:97969
+====SEG==== SESSION:20251020枪林弹雨的十月该如何应对？（周日晚八） SEG:1 点 二楼_summary TSIZE:52743
+====SEG==== SESSION:20251020枪林弹雨的十月该如何应对？（周日晚八） SEG:10点_summary TSIZE:57540
+====SEG==== SESSION:20251020枪林弹雨的十月该如何应对？（周日晚八） SEG:11 点_summary TSIZE:53519
+====SEG==== SESSION:20251020枪林弹雨的十月该如何应对？（周日晚八） SEG:12 点 二楼_summary TSIZE:57643
+====SEG==== SESSION:20251020枪林弹雨的十月该如何应对？（周日晚八） SEG:2 点 二楼_summary TSIZE:14015
+====SEG==== SESSION:20251020枪林弹雨的十月该如何应对？（周日晚八） SEG:8 点_summary TSIZE:38123
+====SEG==== SESSION:20251020枪林弹雨的十月该如何应对？（周日晚八） SEG:9 点_summary TSIZE:50061
+====SEG==== SESSION:20251020枪林弹雨的十月该如何应对？（周日晚八） SEG:直播回放_2025-10-20_00-15-40_summary TSIZE:125342
+====SEG==== SESSION:20251022独门对称战法看透主力真实意图（周三晚八） SEG:直播回放_2025-10-22_20-03-49_summary TSIZE:99000
+====SEG==== SESSION:20251022独门对称战法看透主力真实意图（周三晚八） SEG:直播回放_2025-10-22_22-03-53_summary TSIZE:100352
+====SEG==== SESSION:20251022独门对称战法看透主力真实意图（周三晚八） SEG:直播回放_2025-10-23_00-03-57_summary TSIZE:78107
+====SEG==== SESSION:20251027牛市里的三大散户魔咒（周日晚九半） SEG:10 点_summary TSIZE:42398
+====SEG==== SESSION:20251027牛市里的三大散户魔咒（周日晚九半） SEG:11 点_summary TSIZE:48899
+====SEG==== SESSION:20251027牛市里的三大散户魔咒（周日晚九半） SEG:12 点_summary TSIZE:40365
+====SEG==== SESSION:20251027牛市里的三大散户魔咒（周日晚九半） SEG:9 点_summary TSIZE:22241
+====SEG==== SESSION:20251027牛市里的三大散户魔咒（周日晚九半） SEG:上二楼 01.09-01.17_summary TSIZE:8111
+====SEG==== SESSION:20251027牛市里的三大散户魔咒（周日晚九半） SEG:上二楼 01.17-.02.16_summary TSIZE:57040
+====SEG==== SESSION:20251027牛市里的三大散户魔咒（周日晚九半） SEG:上二楼 2 点_summary TSIZE:48506
+====SEG==== SESSION:20251027牛市里的三大散户魔咒（周日晚九半） SEG:直播回放_2025-10-27_01-00-58_summary TSIZE:118600
+====SEG==== SESSION:20251029沉舟千帆，步步为营。（周三晚八） SEG:直播回放_2025-10-29-01_summary TSIZE:101971
+====SEG==== SESSION:20251029沉舟千帆，步步为营。（周三晚八） SEG:直播回放_2025-10-30_00-01-11_summary TSIZE:72266
+====SEG==== SESSION:20251029沉舟千帆，步步为营。（周三晚八） SEG:直播回放2025-10-29-02_summary TSIZE:103915
+====SEG==== SESSION:20251103下一个“比亚迪”在哪里？（周日晚八） SEG:10 点_summary TSIZE:52721
+====SEG==== SESSION:20251103下一个“比亚迪”在哪里？（周日晚八） SEG:11 点_summary TSIZE:47563
+====SEG==== SESSION:20251103下一个“比亚迪”在哪里？（周日晚八） SEG:12 点-12 点半_summary TSIZE:26391
+====SEG==== SESSION:20251103下一个“比亚迪”在哪里？（周日晚八） SEG:8 点_summary TSIZE:48779
+====SEG==== SESSION:20251103下一个“比亚迪”在哪里？（周日晚八） SEG:9 点_summary TSIZE:49794
+====SEG==== SESSION:20251103下一个“比亚迪”在哪里？（周日晚八） SEG:二楼 1 点半-2 点_summary TSIZE:31471
+====SEG==== SESSION:20251103下一个“比亚迪”在哪里？（周日晚八） SEG:二楼 12 点半-1 点_summary TSIZE:50074
+====SEG==== SESSION:20251103下一个“比亚迪”在哪里？（周日晚八） SEG:直播回放_2025-11-03_00-33-12_summary TSIZE:81554
+====SEG==== SESSION:20251105期中考试（周三晚八） SEG:直播回放_2025-11-05_20-00-44_summary TSIZE:101007
+====SEG==== SESSION:20251105期中考试（周三晚八） SEG:直播回放_2025-11-05_22-00-48_summary TSIZE:74798
+====SEG==== SESSION:20251105期中考试（周三晚八） SEG:直播回放_2025-11-06_00-00-52_summary TSIZE:105907
+====SEG==== SESSION:20251110扯会儿淡~ SEG:10 点_summary TSIZE:51701
+====SEG==== SESSION:20251110扯会儿淡~ SEG:11 点_summary TSIZE:35448
+====SEG==== SESSION:20251110扯会儿淡~ SEG:8 点_summary TSIZE:52099
+====SEG==== SESSION:20251110扯会儿淡~ SEG:9 点_summary TSIZE:46610
+====SEG==== SESSION:20251110扯会儿淡~ SEG:二楼 1 点_summary TSIZE:48362
+====SEG==== SESSION:20251110扯会儿淡~ SEG:二楼 12 点_summary TSIZE:40310
+====SEG==== SESSION:20251110扯会儿淡~ SEG:二楼 2 点_summary TSIZE:16245
+====SEG==== SESSION:20251110扯会儿淡~ SEG:直播回放_2025-11-10_00-04-50_summary TSIZE:105217
+====SEG==== SESSION:20251112仓位管理如何大幅提升赚钱效率（周三晚8） SEG:直播回放_2025-11-12_20-01-23_summary TSIZE:95830
+====SEG==== SESSION:20251112仓位管理如何大幅提升赚钱效率（周三晚8） SEG:直播回放_2025-11-12_22-01-27_summary TSIZE:93557
+====SEG==== SESSION:20251112仓位管理如何大幅提升赚钱效率（周三晚8） SEG:直播回放_2025-11-13_00-01-31_summary TSIZE:64876
+====SEG==== SESSION:20251116重点板块视察~ SEG:zettaranc直播回放_2025-11-16_summary TSIZE:73187
+====SEG==== SESSION:20251119为你的“知行合一账户”充值～（周三晚八） SEG:直播回放_2025-11-19_20-00-24_summary TSIZE:97108
+====SEG==== SESSION:20251119为你的“知行合一账户”充值～（周三晚八） SEG:直播回放_2025-11-19_22-00-28_summary TSIZE:99254
+====SEG==== SESSION:20251119为你的“知行合一账户”充值～（周三晚八） SEG:直播回放_2025-11-20_00-00-32_summary TSIZE:87882
+====SEG==== SESSION:20251123蛋比时间~ SEG:zettaranc充电直播回放_summary TSIZE:99696
+====SEG==== SESSION:20251126Z家军之每日5步极简工作流精讲（三晚8） SEG:zettaranc充电直播回放1_summary TSIZE:110334
+====SEG==== SESSION:20251126Z家军之每日5步极简工作流精讲（三晚8） SEG:zettaranc充电直播回放2_summary TSIZE:86868
+====SEG==== SESSION:20251126Z家军之每日5步极简工作流精讲（三晚8） SEG:zettaranc充电直播回放3_summary TSIZE:54829
+====SEG==== SESSION:20251201msfdc~ SEG:zettaranc充电直播回放_summary TSIZE:71614
+====SEG==== SESSION:20251203交易中如何调整“手紧手松”？（周三晚八） SEG:zettaranc充电直播回放1_summary TSIZE:97809
+====SEG==== SESSION:20251203交易中如何调整“手紧手松”？（周三晚八） SEG:zettaranc充电直播回放2_summary TSIZE:104770
+====SEG==== SESSION:20251203交易中如何调整“手紧手松”？（周三晚八） SEG:zettaranc充电直播回放3_summary TSIZE:80734
+====SEG==== SESSION:20251208老主线的新叙事！ SEG:zettaranc Z哥 充电直播回放_summary TSIZE:68443
+====SEG==== SESSION:20251210成交量与股价最真实的关系 （周三晚八） SEG:zettaranc Z哥 充电直播回放1_summary TSIZE:95909
+====SEG==== SESSION:20251210成交量与股价最真实的关系 （周三晚八） SEG:zettaranc Z哥 充电直播回放2_summary TSIZE:100963
+====SEG==== SESSION:20251210成交量与股价最真实的关系 （周三晚八） SEG:zettaranc Z哥 充电直播回放3_summary TSIZE:92104
+====SEG==== SESSION:20251214扯淡局~ SEG:zettaranc 充电直播回放1_summary TSIZE:84239
+====SEG==== SESSION:20251217为什么说散户输在没有交易节奏（周三晚八） SEG:zettaranc充电直播回放1_summary TSIZE:100332
+====SEG==== SESSION:20251217为什么说散户输在没有交易节奏（周三晚八） SEG:zettaranc充电直播回放2_summary TSIZE:91877
+====SEG==== SESSION:20251217为什么说散户输在没有交易节奏（周三晚八） SEG:zettaranc充电直播回放3_summary TSIZE:113355
+====SEG==== SESSION:20251221茶人小叙~ SEG:zettaranc充电直播回放_summary TSIZE:141087
+====SEG==== SESSION:20251224底部暴力K线擒大牛 SEG:zettaranc 充电直播回放_summary TSIZE:215440
+====SEG==== SESSION:20251229茶人小叙~ SEG:zettaranc充电直播回放_summary TSIZE:87607
+====SEG==== SESSION:20251231最难一课之击穿对手盘！ SEG:zettaranc充电直播回放1_summary TSIZE:106456
+====SEG==== SESSION:20251231最难一课之击穿对手盘！ SEG:zettaranc充电直播回放2_summary TSIZE:103025
+====SEG==== SESSION:20251231最难一课之击穿对手盘！ SEG:zettaranc充电直播回放3_summary TSIZE:131113
+====SEG==== SESSION:20260105 中国消费：谁先变革谁早超生！（日晚八） SEG:B站 zettaranc 充电直播回放_summary TSIZE:50350
+====SEG==== SESSION:20260107 B2买点案例精讲（周三晚八） SEG:B站 zettaranc 直播回放1_summary TSIZE:97390
+====SEG==== SESSION:20260107 B2买点案例精讲（周三晚八） SEG:B站 zettaranc 直播回放2_summary TSIZE:103948
+====SEG==== SESSION:20260107 B2买点案例精讲（周三晚八） SEG:B站 zettaranc 直播回放3_summary TSIZE:80408
+====SEG==== SESSION:20260112 当前行情下5种散户常犯错误！（周日晚八） SEG:zettaranc Z哥 充电直播回放_summary TSIZE:91447
+====SEG==== SESSION:20260114  打窝结束！如何变阵？ SEG:zettaranc Z哥 B站充电直播回放 1_summary TSIZE:85998
+====SEG==== SESSION:20260114  打窝结束！如何变阵？ SEG:zettaranc Z哥 B站充电直播回放2_summary TSIZE:136604
+====SEG==== SESSION:20260121开枝散叶，踏准节奏 SEG:zettaranc Z哥 B站充电直播3_summary TSIZE:64512
+====SEG==== SESSION:20260121开枝散叶，踏准节奏 SEG:zettaranc Z哥 B站充电直播回放1_summary TSIZE:95969
+====SEG==== SESSION:20260121开枝散叶，踏准节奏 SEG:zettaranc Z哥 B站充电直播回放2_summary TSIZE:91989
+====SEG==== SESSION:20260126 慢牛密码破译！ SEG:非重要内容，可不看 TSIZE:0
+====SEG==== SESSION:20260128煤飞色舞之后 SEG:非重要内容 TSIZE:0
+====SEG==== SESSION:20260202 喝茶聊聊天~ SEG:zettaranc Z哥 b站充电直播回放_summary TSIZE:132888
+====SEG==== SESSION:20260204  当前环境下最好的交易策略~ SEG:zettaranc Z哥 b站充电直播回放1_summary TSIZE:114158
+====SEG==== SESSION:20260204  当前环境下最好的交易策略~ SEG:zettaranc Z哥 b站充电直播回放2_summary TSIZE:104149
+====SEG==== SESSION:20260204  当前环境下最好的交易策略~ SEG:zettaranc Z哥 b站充电直播回放3_summary TSIZE:128383
+====SEG==== SESSION:20260209务必高度重视川子喊单10万点~ SEG:zettaranc Z哥 b站充电直播回放_summary TSIZE:105136
+====SEG==== SESSION:20260211节前答疑时间 SEG:zettaranc Z哥 b站充电直播回放1_summary TSIZE:105828
+====SEG==== SESSION:20260211节前答疑时间 SEG:zettaranc Z哥 b站充电直播回放2_summary TSIZE:108254
+====SEG==== SESSION:20260211节前答疑时间 SEG:zettaranc Z哥 b站充电直播回放3_summary TSIZE:66688
+====SEG==== SESSION:20260219 进阶】如何大幅提高选股的成功率 SEG:zettaranc  Z哥 b站充电直播回放2_summary TSIZE:82938
+====SEG==== SESSION:20260219 进阶】如何大幅提高选股的成功率 SEG:zettaranc Z哥 b站充电回放3_summary TSIZE:107652
+====SEG==== SESSION:20260219 进阶】如何大幅提高选股的成功率 SEG:zettaranc Z哥 b站充电直播回放1_summary TSIZE:102090
+====SEG==== SESSION:20260220瑜伽裤战法 SEG:zettaranc Z哥 b站充电直播回放1_summary TSIZE:89977
+====SEG==== SESSION:20260220瑜伽裤战法 SEG:zettaranc Z哥 b站充电直播回放2_summary TSIZE:104861
+====SEG==== SESSION:20260220瑜伽裤战法 SEG:zettaranc Z哥 b站充电直播回放3_summary TSIZE:94267
+====SEG==== SESSION:20260224展望节后行情如何演绎？ SEG:zettaranc Z哥 b站充电直播回放_summary TSIZE:47841
+====SEG==== SESSION:20260301 10张难看图形绝不能碰！（周日晚八） SEG:Z哥b站充电直播回放1_summary TSIZE:90276
+====SEG==== SESSION:20260301 10张难看图形绝不能碰！（周日晚八） SEG:Z哥充电直播回放2_summary TSIZE:76281
+====SEG==== SESSION:20260304 为什么又被炸成德A兰？（周三晚八） SEG:Z哥b站充电直播回放1_summary TSIZE:105432
+====SEG==== SESSION:20260304 为什么又被炸成德A兰？（周三晚八） SEG:Z哥b站充电直播回放3_summary TSIZE:111134
+====SEG==== SESSION:20260304 为什么又被炸成德A兰？（周三晚八） SEG:Z哥充电直播回放2_summary TSIZE:105686
+====SEG==== SESSION:20260309补充两个重要技能点 SEG:Z哥b站充电直播回放1_summary TSIZE:115724
+====SEG==== SESSION:20260311九篇心法精讲（十年后版） 周三晚九 SEG:Z哥 b站充电直播回放1_summary TSIZE:113587
+====SEG==== SESSION:20260311九篇心法精讲（十年后版） 周三晚九 SEG:Z哥 b站充电直播回放2_summary TSIZE:120274
+====SEG==== SESSION:20260316 先破坏，再建设。（周日晚八） SEG:zettaranc b站充电直播回放1_summary TSIZE:90935
+====SEG==== SESSION:20260316 先破坏，再建设。（周日晚八） SEG:zettaranc b站充电直播回放2_summary TSIZE:42541
+====SEG==== SESSION:20260318砖型图的核心用法（周三晚八） SEG:zettaranc b站充电直播回放1_summary TSIZE:98112
+====SEG==== SESSION:20260318砖型图的核心用法（周三晚八） SEG:zettaranc b站充电直播回放2_summary TSIZE:95668
+====SEG==== SESSION:20260318砖型图的核心用法（周三晚八） SEG:zettaranc b站充电直播回放3_summary TSIZE:88504
+====SEG==== SESSION:20260322 砍柴，挑水，做饭 SEG:zettaranc b站充电直播_summary TSIZE:104381
+====SEG==== SESSION:20260325 砖型图的三种定式（周三晚7点30） SEG:zettaranc b站充电直播回放1_summary TSIZE:97434
+====SEG==== SESSION:20260325 砖型图的三种定式（周三晚7点30） SEG:zettaranc b站充电直播回放2_summary TSIZE:101879
+====SEG==== SESSION:20260325 砖型图的三种定式（周三晚7点30） SEG:zettaranc b站充电直播回放3_summary TSIZE:68036
+====SEG==== SESSION:20260325 砖型图的三种定式（周三晚7点30） SEG:zettaranc b站充电直播回放4_summary TSIZE:3484
+====SEG==== SESSION:20260330 全面推演美军若地面取胜概率（周日晚八） SEG:zettaranc b站充电直播回放_summary TSIZE:75059
+====SEG==== SESSION:20260404 二楼补钟：重要一课 SEG:zettaranc b站充电直播回放1_summary TSIZE:91263
+====SEG==== SESSION:20260404 二楼补钟：重要一课 SEG:zettaranc b站充电直播回放2_summary TSIZE:92943
+====SEG==== SESSION:20260404 二楼补钟：重要一课 SEG:zettaranc b站充电直播回放3_summary TSIZE:96307
+====SEG==== SESSION:20260404 二楼补钟：重要一课 SEG:zettaranc b站充电直播回放4_summary TSIZE:98296
+====SEG==== SESSION:20260404重要一课（周六晚八） SEG:2026-04-04第1部分（开场聊）_summary TSIZE:45646
+====SEG==== SESSION:20260404重要一课（周六晚八） SEG:2026-04-04第2部分（开讲）_summary TSIZE:45906
+====SEG==== SESSION:20260404重要一课（周六晚八） SEG:2026-04-04第3部分_summary TSIZE:45325
+====SEG==== SESSION:20260404重要一课（周六晚八） SEG:2026-04-04第3部分_summary前 TSIZE:44495
+====SEG==== SESSION:20260404重要一课（周六晚八） SEG:2026-04-04第4部分_summary TSIZE:47667
+====SEG==== SESSION:20260404重要一课（周六晚八） SEG:2026-04-04第5部分_summary TSIZE:45624
+====SEG==== SESSION:20260404重要一课（周六晚八） SEG:2026-04-04第6部分_summary TSIZE:50873
+====SEG==== SESSION:20260404重要一课（周六晚八） SEG:2026-04-04第7部分（纯闲聊了）_summary TSIZE:43602
+====SEG==== SESSION:20260404重要一课（周六晚八） SEG:2026-04-04第8部分_summary TSIZE:42564
+====SEG==== SESSION:20260404重要一课（周六晚八） SEG:2026-04-04第9部分(下播晚安）_summary TSIZE:9525
+====SEG==== SESSION:20260404重要一课（周六晚八） SEG:AI文稿 TSIZE:0
+====SEG==== SESSION:20260404重要一课（周六晚八） SEG:转载的 TSIZE:0
+====SEG==== SESSION:20260406 SEG:【全章节标注+弹幕版】【Z哥录播】2026-4-6 扯淡局 - 1.p1(Av116358046025666,P1)_summary TSIZE:42021
+====SEG==== SESSION:20260406 SEG:【全章节标注+弹幕版】【Z哥录播】2026-4-6 扯淡局 - 2.p2(Av116358046025666,P2)_summary TSIZE:51668
+====SEG==== SESSION:20260406 SEG:【全章节标注+弹幕版】【Z哥录播】2026-4-6 扯淡局 - 3.p3(Av116358046025666,P3)_summary TSIZE:56193
+====SEG==== SESSION:20260406 SEG:【全章节标注+弹幕版】【Z哥录播】2026-4-6 扯淡局 - 4.p4(Av116358046025666,P4)_summary TSIZE:53521
+====SEG==== SESSION:20260406 SEG:【全章节标注+弹幕版】【Z哥录播】2026-4-6 扯淡局 - 5.p5(Av116358046025666,P5)_summary TSIZE:23182
+====SEG==== SESSION:20260406 SEG:20260406二楼第1部分_summary TSIZE:48085
+====SEG==== SESSION:20260406 SEG:20260406二楼第2部分_summary TSIZE:49750
+====SEG==== SESSION:20260406 SEG:AI文稿 TSIZE:0
+====SEG==== SESSION:20260408筹码理论在当今A股的应用 SEG:20260408第1部分_summary TSIZE:45583
+====SEG==== SESSION:20260408筹码理论在当今A股的应用 SEG:20260408第2部分_summary TSIZE:45336
+====SEG==== SESSION:20260408筹码理论在当今A股的应用 SEG:20260408第3部分正课开始_summary TSIZE:55619
+====SEG==== SESSION:20260408筹码理论在当今A股的应用 SEG:20260408第4部分正课_summary TSIZE:54576
+====SEG==== SESSION:20260408筹码理论在当今A股的应用 SEG:20260408第5部分正课_summary TSIZE:52598
+====SEG==== SESSION:20260408筹码理论在当今A股的应用 SEG:20260408第7部分纯闲聊_summary TSIZE:16684
+====SEG==== SESSION:20260408筹码理论在当今A股的应用 SEG:2026040第6部分_summary TSIZE:47996
+====SEG==== SESSION:20260408筹码理论在当今A股的应用 SEG:AI文稿 TSIZE:0
+====SEG==== SESSION:20260412下阶段主线与支线 SEG:20260412AI文稿 TSIZE:0
+====SEG==== SESSION:20260412下阶段主线与支线 SEG:20260412第1部分_summary TSIZE:13567
+====SEG==== SESSION:20260412下阶段主线与支线 SEG:20260412第2部分_summary TSIZE:43755
+====SEG==== SESSION:20260412下阶段主线与支线 SEG:20260412第3部分_summary TSIZE:46006
+====SEG==== SESSION:20260412下阶段主线与支线 SEG:20260412第4部分_summary TSIZE:48988
+====SEG==== SESSION:20260412下阶段主线与支线 SEG:20260412第5部分_summary TSIZE:43557
+====SEG==== SESSION:20260415知行交易模块总结 SEG:2026-04-15_第1部分_summary TSIZE:44057
+====SEG==== SESSION:20260415知行交易模块总结 SEG:2026-04-15_第2部分闲聊_summary TSIZE:50832
+====SEG==== SESSION:20260415知行交易模块总结 SEG:2026-04-15_第3部分sc_summary TSIZE:11972
+====SEG==== SESSION:20260415知行交易模块总结 SEG:2026-04-15_第4部分正题_summary TSIZE:32888
+====SEG==== SESSION:20260415知行交易模块总结 SEG:2026-04-15_第5部分正题_summary TSIZE:46070
+====SEG==== SESSION:20260415知行交易模块总结 SEG:2026-04-15_第6部分结束_summary TSIZE:9430
+====SEG==== SESSION:20260415知行交易模块总结 SEG:20260415AI文稿 TSIZE:0
+====SEG==== SESSION:20260419如何从产业视角看投资 SEG:20260419AI文稿 TSIZE:0
+====SEG==== SESSION:20260419如何从产业视角看投资 SEG:20260419二楼第1部分_summary TSIZE:40901
+====SEG==== SESSION:20260419如何从产业视角看投资 SEG:20260419二楼第2部分_summary TSIZE:47376
+====SEG==== SESSION:20260419如何从产业视角看投资 SEG:20260419二楼第3部分_summary TSIZE:26926
+====SEG==== SESSION:20260422MACD SEG:2026-04-22_第1部分_summary TSIZE:46492
+====SEG==== SESSION:20260422MACD SEG:2026-04-22_第2部分正题_summary TSIZE:49422
+====SEG==== SESSION:20260422MACD SEG:2026-04-22_第3部分案例_summary TSIZE:46181
+====SEG==== SESSION:20260422MACD SEG:2026-04-22_第4部分下半场开始_summary TSIZE:46889
+====SEG==== SESSION:20260422MACD SEG:20260422AI文稿 TSIZE:0
+====SEG==== SESSION:20260422MACD SEG:2026-04-23_第5部分_summary TSIZE:45006
+====SEG==== SESSION:20260422MACD SEG:2026-04-23_第6部分_summary TSIZE:10936
+====SEG==== SESSION:20260426从产业资本看投资 SEG:0426AI文稿 TSIZE:0
+====SEG==== SESSION:20260426从产业资本看投资 SEG:20260426文字稿 TSIZE:0
+====SEG==== SESSION:20260426从产业资本看投资 SEG:2026-04-27_00-24-33_summary TSIZE:51754
+====SEG==== SESSION:20260426从产业资本看投资 SEG:2026-04-27_01-24-43_summary TSIZE:45721
+====SEG==== SESSION:20260426从产业资本看投资 SEG:2026-04-27_02-24-43_summary TSIZE:49657
+====SEG==== SESSION:20260426从产业资本看投资 SEG:2026-04-27_03-24-42_summary TSIZE:30410
+====SEG==== SESSION:20260429三种常用战法摸底考 SEG:2026-04-29_20-34-36_summary TSIZE:38293
+====SEG==== SESSION:20260429三种常用战法摸底考 SEG:2026-04-29_21-29-24-开始考题_summary TSIZE:37111
+====SEG==== SESSION:20260429三种常用战法摸底考 SEG:2026-04-29_22-29-34_summary TSIZE:36418
+====SEG==== SESSION:20260429三种常用战法摸底考 SEG:2026-04-29_23-29-34_summary TSIZE:50144
+====SEG==== SESSION:20260429三种常用战法摸底考 SEG:20260429AI文稿 TSIZE:0
+====SEG==== SESSION:20260429三种常用战法摸底考 SEG:2026-04-30_00-29-34_summary TSIZE:41742
+====SEG==== SESSION:20260429三种常用战法摸底考 SEG:2026-04-30_01-29-41_summary TSIZE:36853
+====SEG==== SESSION:战法 SEG:选股 TSIZE:0
+====SEG==== SESSION:战法 SEG:主图副图指标 TSIZE:0
+
