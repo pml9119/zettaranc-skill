@@ -89,7 +89,10 @@
 
 - **落盘位置**：产物目前**全部**在 `.scratch/wayfinder-vibe-distill/artifacts/`；`books/zettaranc/` **尚未创建** → 06 编译阶段才落盘（符合 Q3 混合落位）。
 - **⚠️ `knowledge/` 已被首次修改（2026-09-12）** —— **不再是「原 32 篇未动」**：本轮冲突裁决改了 **6 个文件**（`advanced-patterns.md`／`iron-butterfly.md`／`position-management.md`／`stock-glossary.md`／`sell-discipline.md`／`trading-core.md`）。**改前存档**：`_knowledge-backup-20260912_015824/`（6 文件，SHA256 + git blob 双重校验通过）。→ **06 编译阶段须以这 6 个文件为新基线**，不可再用旧 32 篇快照。
-- **代码改动（首次动仓库）**：F1 已改 `modules/indicators/price_patterns/brick.py`（新增 `calculate_brick_series`）+ 两个 `__init__.py` 导出 + `tests/test_brick_series.py`（19 用例）。**未提交**（仍在工作区）。
+- **代码改动（首次动仓库）**：F1 已改 `modules/indicators/price_patterns/brick.py`（新增 `calculate_brick_series`）+ 两个 `__init__.py` 导出 + `tests/test_brick_series.py`（19 用例）。✅ **已提交 `8cc6e07`**。
+- **⚠️ F1 勘误（2026-09-12，砖型图校准时发现）**：commit `8cc6e07` 的信息写「**None for the first 11 bars**」是**错的** —— 实测 `calculate_brick_series` 只有**前 3 个元素为 `None`**（`brick.py:134` 字面量 `[None, None, None]`；`tests/test_brick_series.py:72/84/128` 同口径；9 只票实测 `None count = 3`）。**「11」对应的是另一件事**：回归锚点 `series[i] == calculate_brick_value(k[:i+1])` 仅对 **i ≥ 11** 成立（前缀长度 ≥ 12）。因该 commit 已被后续多个 commit 覆盖，**不改写历史**（本工作区有并发会话，rebase 风险高于收益）→ **以此处为准**。
+- **🔴 砖色算子缺陷（2026-09-12，F2/F3 前必须定）**：颜色映射**不在 `brick.py`**，在 `api/services/stock_service.py:311-326`：`brick_colors[i] = 1 if v[i] >= v[i-1] else -1`；前端 `KlineChart.tsx:1035` 有 `c === 0 ? 'yellow'` 分支。**但后端只产出 ±1，`0` 从未被赋出 → 黄砖在后端数学上不可达**，而**参考图里黄砖大量可见** → 后端算子**无法复现软件显示**。若 F2/F3 依赖红/绿/黄三态，**必须先定清黄砖语义**（`砖值==0`？持平？），否则探测器缺一态。
+- **🔴 `if val else None` 陷阱**：`stock_service.py:311-326` 的 `brick_values[i] = round(val,2) if val else None` 把**真值 0 也变成 `None`** → 「砖值恰为 0」在接口层不可区分。
 - **🐛 测试基线（重要）**：本项目有 **40 个既存失败**（全为 CLI/子进程/跨平台类，与 indicators 无关）→ 实测基线 **40 failed / 1460 passed**；加上 F1 后 **40 failed / 1479 passed**（失败数不变，通过 +19）→ **F1 零破坏**。后续比对见 `artifacts/test-baseline.md`。
 - **已知缺口**：A1 批次**缺 `PIPELINE_STATE.md`** → **v2 已补齐**；05 v2 起**强制每批必写**。
 - **A2 已闭环** 4 张六段完整能力卡：双线战法 / 五日工作流 SOP / 仓位管理 → 建议 **promoted 独立 Skill**；先破坏再建设 → router 内能力卡。
