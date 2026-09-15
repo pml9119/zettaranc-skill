@@ -119,10 +119,16 @@ def detect_all_strategies(ts_code: str, days: int = 120, klines: list | None = N
 
     # 一次性预计算所有指标并挂载到 DailyData 属性上，消除策略循环检测内的重复计算开销
     dif_len = len(dif_list) if dif_list else 0
+    # ⚠️ calculate_macd 返回的 dif_list 已切掉前 (slow-1) 根（见 indicators/core.py 的
+    # `dif_seq[slow - 1:]`），长度 = n - (slow-1) = n - 25。**必须按下标偏移贴回**：
+    # 旧写法 `dif_list[idx]` 让第 idx 根拿到第 idx+25 根的 DIF —— 由于本函数逐日扫描，
+    # 等于给每一天都喂了 25 根之后的未来值（前视 bug）。2026-09-12 修。
+    macd_offset = len(daily_klines) - dif_len if dif_len else 0
     for idx, k in enumerate(daily_klines):
         k.kdj_k, k.kdj_d, k.kdj_j = kdj_sequence[idx]
         k.bbi = bbi_sequence[idx]
-        k.macd_dif = dif_list[idx] if idx < dif_len else 0.0
+        _mi = idx - macd_offset
+        k.macd_dif = dif_list[_mi] if dif_len and 0 <= _mi < dif_len else 0.0
 
     # 遍历每一天检测战法
     from ..indicators import detect_kirin_stage
