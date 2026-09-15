@@ -820,7 +820,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_bt_b2.add_argument("--b2-min-pct", type=float, default=4.0, help="B2 涨幅阈值")
     p_bt_b2.add_argument("--b2-min-vol", type=float, default=2.0, help="B2 量比阈值")
     p_bt_b2.add_argument("--b2-j-max", type=float, default=55.0, help="B2 当日 J 值上限")
-    p_bt_b2.add_argument("--b1-j-threshold", type=float, default=-10.0, help="B1 J 值阈值")
+    p_bt_b2.add_argument("--b1-j-threshold", type=float, default=13.0, help="B1 入场 J 值上限（J < 阈值；默认 13＝语料口径，-10 为质量优选档）")
     p_bt_b2.add_argument("--observe-min", type=int, default=3, help="观察窗口起点")
     p_bt_b2.add_argument("--observe-max", type=int, default=5, help="观察窗口终点")
     p_bt_b2.add_argument("--max-gap-open-pct", type=float, default=5.0, help="次日高开过滤")

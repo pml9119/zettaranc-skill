@@ -14,9 +14,14 @@ def detect_b1(klines: list[DailyData], index: int, kirin_context: dict | None = 
     检测 B1 买点（已升级 MDC 多维验证 + 麒麟阶段背景）
 
     B1 核心条件：
-    1. J < -10
+    1. J < 13（三档结构见下）
     2. 缩量回调（最佳）
     3. 非绿砖状态（连续下跌 < 4天）
+
+    J 值三档结构（2026-09-12 裁决，语料 [1006] 回放1 01:43:08「往下打到十三以下都算是B一」）：
+    - J < 13   ：B1 入场门槛（含负值），本函数 default
+    - J <= -10 ：质量优选档（负值区更佳，不再是入场硬门槛）
+    - J < -13  ：两天复合战法专用（见 compound_strategies.detect_changan），语义不同
 
     MDC 加分项：
     - 价格处于麒麟会“吸筹”阶段 (+20%)
@@ -37,8 +42,10 @@ def detect_b1(klines: list[DailyData], index: int, kirin_context: dict | None = 
     k, d, j = _get_kdj(klines, index)
 
     # 1. 核心条件判断（参数可被 self-optimizer 覆盖）
-    j_threshold = get_active_param("b1", "j_threshold", -10)
-    if j >= j_threshold:  # J 必须低于 threshold（默认 -10）
+    #    默认 +13 = B1 入场门槛（语料口径：J 打到十三以下都算 B1，含负值）
+    #    J <= -10 为质量优选档，不再是硬门槛；J < -13 归两天复合战法
+    j_threshold = get_active_param("b1", "j_threshold", 13)
+    if j >= j_threshold:  # J 必须低于 threshold（默认 +13）
         return None
 
     # 检查是否在连续下跌中（绿砖状态）
@@ -140,9 +147,18 @@ def detect_b2(klines: list[DailyData], index: int, kirin_context: dict | None = 
         ``zt backtest multi``(旧) vs ``zt backtest b2-confirm``(新)。
 
     B2 条件（B1后的确认信号）：
-    1. 前几日有B1（J<-10）
+    1. 前几日有B1（J < -10，即"质量优选档"；注意此处**不是** B1 入场门槛 +13）
     2. 放量长阳（涨幅>=4%）
     3. J值拐头（>-10）
+
+    关于条件 1 的门槛（有意与 B1 入场门槛解耦）：
+    B1 入场门槛放宽到 J < 13 后，B2 的 B1 回看门槛**保持 -10 不变**（可由
+    ``get_active_param("b2", "confirm_j_threshold", -10)`` 覆盖）。理由：
+      a) B2 的语义是"B1 深跌后放量确认"，第 1 天必须深跌；+13 会让"回看窗口内
+         存在 B1"几乎恒真（实测 11301 个 (票,日) 中 has_b1 从 1230 → 6965），
+         B2 将退化成"放量长阳 + J<55"，失去确认意义；
+      b) 实测把该门槛放宽到 +13 会让 B2 信号从 22 → 156（约 7x），远超本次裁决范围。
+    实测：仅放宽 B1 入场门槛时 B2 信号数 22 → 22（不变），确认两者无耦合副作用。
 
     MDC 加分项：
     - 处于麒麟会“拉升”阶段 (+20%)
@@ -161,10 +177,13 @@ def detect_b2(klines: list[DailyData], index: int, kirin_context: dict | None = 
     yesterday = klines[index - 1]
 
     # 1. 核心条件：检查是否有B1在前几日
+    #    门槛保持 -10（质量优选档）而非 B1 入场门槛 +13 —— 理由见上方 docstring。
+    #    参数化以便回测/自优化可调；默认值刻意维持 -10 = 改动前行为。
+    confirm_j_threshold = get_active_param("b2", "confirm_j_threshold", -10)
     has_b1 = False
     for i in range(5, min(15, index)):
         pk, pd, pj = _get_kdj(klines, index - i)
-        if pj < -10:
+        if pj < confirm_j_threshold:
             has_b1 = True
             break
 

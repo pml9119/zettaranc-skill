@@ -198,7 +198,7 @@ def test_reset_is_deep_copy(mutator, default_params):
     reset = mutator.reset_to_defaults()
     reset["b1"]["j_threshold"] = 999
     # 不影响 defaults
-    assert mutator._defaults["b1"]["j_threshold"] == -10
+    assert mutator._defaults["b1"]["j_threshold"] == 13
 
 
 # ==================== 确定性 ====================

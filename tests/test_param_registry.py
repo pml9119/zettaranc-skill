@@ -42,10 +42,12 @@ def test_get_param_info_found():
     """查已知参数返回 ParamSpec。"""
     info = get_param_info("b1", "j_threshold")
     assert info is not None
-    assert info.default == -10
+    assert info.default == 13
     assert info.min == -30
-    assert info.max == 0
+    assert info.max == 20
     assert info.step == 2
+    # 不变式：默认值必须落在搜索区间内，否则自优化永远搜不到默认值
+    assert info.min <= info.default <= info.max
 
 
 def test_get_param_info_not_found():

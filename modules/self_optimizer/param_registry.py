@@ -103,12 +103,12 @@ _reg(
     [
         ParamSpec(
             name="j_threshold",
-            default=-10,
+            default=13,
             min=-30,
-            max=0,
+            max=20,
             step=2,
             category="entry",
-            description="B1 买入的 J 值上限（J < threshold 触发，代码实际值 -10）",
+            description="B1 买入的 J 值上限（J < threshold 触发，代码实际值 13；-10 为质量优选档）",
             impact="降低（更负） → 信号更少但超卖更充分；升高 → 更多信号但精度下降",
             wired=True,
         ),

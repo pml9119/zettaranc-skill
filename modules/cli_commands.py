@@ -347,7 +347,7 @@ def cmd_backtest(args) -> None:
 
         b2_j_max = getattr(args, "b2_j_max", None)
         cfg = B1B2Config(
-            b1_j_threshold=getattr(args, "b1_j_threshold", -10.0),
+            b1_j_threshold=getattr(args, "b1_j_threshold", 13.0),
             observe_min=getattr(args, "observe_min", 3),
             observe_max=getattr(args, "observe_max", 5),
             b2_min_pct=getattr(args, "b2_min_pct", 4.0),
