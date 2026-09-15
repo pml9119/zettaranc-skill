@@ -30,6 +30,7 @@ from .sandglass import calculate_sandglass_score
 
 from .brick import (
     calculate_brick_value,
+    calculate_brick_series,
     calculate_brick_history,
     detect_brick_trend,
     detect_four_brick_system,
@@ -65,6 +66,7 @@ __all__ = [
     "detect_sb1_detailed",
     "calculate_dmi",
     "calculate_brick_value",
+    "calculate_brick_series",
     "calculate_brick_history",
     "detect_brick_trend",
     "detect_fanbao",

@@ -72,6 +72,72 @@ def calculate_brick_value(klines: list[DailyData]) -> float:
     return round(brick, 2)
 
 
+def calculate_brick_series(klines: list[DailyData]) -> list[float | None]:
+    """
+    计算砖型图【全序列】（O(n) 单遍），对齐 02 号 ticket v2 §二。
+
+    为什么需要它：
+        红绿砖判定必须比较相邻砖值（``今天红柱 = 砖值 > REF(砖值,1)``、
+        ``昨天绿柱 = REF(砖值,1) < REF(砖值,2)``）。``calculate_brick_value``
+        只返回单点值，而 9 个通达信公式中有 5 个依赖该序列。
+
+    返回：
+        与 klines 等长的列表；**前 3 个元素为 None**（HHV/LLV 需 4 根 K 线，
+        序列在此处无定义，显式声明而非伪造 0）。
+
+    与 calculate_brick_value 的一致性（★ 回归锚点）：
+        len(klines) >= 12 时：``calculate_brick_series(klines)[-1] == calculate_brick_value(klines)``
+        len(klines) <  12 时：⚠️ 锚点【不成立】—— 后者有 ``if len(klines) < 12: return 0``
+        的提前返回，而本函数在 n>=4 即产出真值。故锚点测试必须用 >=12 根 K 线。
+
+    与现有前缀重算的关系：
+        brick[i] 与前缀重算值数学等价，**但仅限 i >= 11**（前缀长度 >= 12）。
+        前缀长度 8..11 时 calculate_brick_value 返回 0，故现有实现序列的前 4 个
+        元素是伪造的 0，本函数产出真值 → **替换是行为修正，不是纯重构**。
+
+    性能：
+        现有 ``calculate_brick_history`` / ``detect_four_brick_system`` 用前缀
+        重算（每个前缀调一次 calculate_brick_value），在
+        ``detect_brick_signals`` 的日循环中构成 O(n³)。本函数为 O(n)。
+    """
+    n = len(klines)
+    if n == 0:
+        return []
+    if n < 4:
+        return [None] * n
+
+    highs = [k.high for k in klines]
+    lows = [k.low for k in klines]
+    closes = [k.close for k in klines]
+
+    # VAR1A / VAR3A：自 index=3 起有效（HHV/LLV 需 4 根）
+    var3a: list[float] = []
+    var1a: list[float] = []
+    for i in range(3, n):
+        hhv4 = max(highs[i - 3 : i + 1])
+        llv4 = min(lows[i - 3 : i + 1])
+        rng = hhv4 - llv4
+        if rng == 0:
+            # 与 calculate_brick_value 保持一致（该处取 50.0，非 TDX 的 0/0）
+            var3a.append(50.0)
+            var1a.append(-90.0)
+        else:
+            var3a.append((closes[i] - llv4) / rng * 100)
+            var1a.append((hhv4 - closes[i]) / rng * 100 - 90.0)
+
+    # VAR4A = SMA(VAR3A,6,1) → VAR5A = SMA(VAR4A,6,1)+100
+    var4a = calculate_sma_series(var3a, 6, 1)
+    var5a = [v + 100.0 for v in calculate_sma_series(var4a, 6, 1)]
+    # VAR2A = SMA(VAR1A,4,1)+100
+    var2a = [v + 100.0 for v in calculate_sma_series(var1a, 4, 1)]
+
+    series: list[float | None] = [None, None, None]
+    for a, b in zip(var5a, var2a):
+        var6a = a - b
+        series.append(round(var6a - 4, 2) if var6a > 4 else 0)
+    return series
+
+
 def calculate_brick_history(klines: list[DailyData], lookback: int = 20) -> tuple[str, int]:
     """
     计算砖型图趋势（连续红砖/绿砖数量）
