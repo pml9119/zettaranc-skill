@@ -39,7 +39,10 @@ const ALIASES = {
   idea: 'fog', raw: 'fog', draft: 'fog',
 }
 
-const STATUS_LINE = /^[ \t]*(?:\*\*|__)?Status:(?:\*\*|__)?[ \t]*(\S.*?)[ \t]*$/
+// 必须带 `i`：Backlog.md 的 frontmatter 写的是**小写** `status:`，
+// 而 markdown 票面常写 `**Status:**`。少了这个标志，Backlog 的票会从
+// 历史解析里整批消失（周期时间/吞吐/aging/趋势全部算不出来）。
+const STATUS_LINE = /^[ \t]*(?:\*\*|__)?Status:(?:\*\*|__)?[ \t]*(\S.*?)[ \t]*$/i
 const STATUS_IN_FILE = new RegExp(STATUS_LINE.source, 'im')
 const DAY = 86400000
 
@@ -138,6 +141,20 @@ function canonical(raw) {
   return 'other'
 }
 
+// git 会把含非 ASCII 字节的路径 C 转义引用：
+//   +++ "b/backlog/tasks/zt-1 - \345\256\236\346\265\213-VOL-...md"
+// 不解引用，含中文文件名的票会被判成另一个票面（`startsWith('backlog/')` 为假），
+// 而且「未提交」计数会假报警。
+function unquoteGitPath(p) {
+  if (!(p.startsWith('"') && p.endsWith('"'))) return p
+  const inner = p.slice(1, -1)
+    .replace(/\\([0-7]{3})/g, (_, o) => String.fromCharCode(parseInt(o, 8)))
+    .replace(/\\"/g, '"')
+    .replace(/\\\\/g, '\\')
+  // 八进制还原出的是「字节」，再按 UTF-8 解码回真正的字符串。
+  return Buffer.from(inner, 'latin1').toString('utf8')
+}
+
 // 一次 `git log -p` 拿全部时间线：解析补丁里新增的 `Status:` 行。
 // 合并提交默认不带 diff，所以显式跳过（状态变更走合并是很罕见的做法）。
 function allTimelines(root, trackerDirs) {
@@ -160,7 +177,7 @@ function allTimelines(root, trackerDirs) {
     }
     if (line.startsWith('+++ ') || line.startsWith('--- ')) {
       if (line.startsWith('+++ ')) {
-        const p = line.slice(4).trim()
+        const p = unquoteGitPath(line.slice(4).trim())
         file = p === '/dev/null' ? null : p.replace(/^b\//, '')
       }
       continue
