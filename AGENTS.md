@@ -218,3 +218,30 @@ RUN_REALDATA=true python -m pytest tests/test_indicators_realdata.py -v  # 真�
   - `release.yml`：tag 驱动 `v*.*.*`，test（py3.12/3.13）→ build wheel（maturin）→ 装 wheel → 跑 `tests/test_rust_compat.py` + `tests/test_cli_uses_rust.py` → PyPI → GH Release → ClawHub。
 - **Rust 接线测试**：`tests/test_rust_compat.py`（`pytest.importorskip('_core_compute')`，设 `ZETTARANC_BACKTEST_IMPL=rust` 测 choice 逻辑）；`tests/test_cli_uses_rust.py`（monkeypatch 假 rust 模块，断言 CLI 回测真走 Rust binding）。
 - **无前端 JS 测试**；前端质量靠 `npm run lint` + `npm run build`（tsc -b）。
+
+## Agent skills
+
+### Issue tracker
+
+**两个票面**：实现票在 `backlog/`（`backlog` CLI，状态 = 六列），决策票在 `.scratch/<effort>/issues/`（wayfinder）。
+决策票编号 `01`–`08` 被引用数百次，**不重编号、不迁移**。See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+五个 canonical role，直接用 Backlog.md 原生标签。See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+single-context。`GLOSSARY.md` 与 `docs/adr/` **尚未创建**，是下游依赖的缺口。See `docs/agents/domain.md`.
+
+### Flow
+
+六列看板 `fog → discovery → ready → building → verifying → done` + 并行上限 + 三道人工闸门。**硬规则：**
+
+- **并行 agent ≤ 2**（值在 `docs/agents/flow.md`，需按真实**验收吞吐**校准）
+- **票不能跳列。** 闸 S（spec）与闸 T（tickets）**必须由人过**
+- **一票 = 一个 fresh context = 一个 PR**，不超过 5 个文件
+- 「待验收」最老一张超过 2 天 → **停止启动新批次**，只做验收
+- 决策账本 = `.scratch/wayfinder-vibe-distill/map.md` §Decisions so far。**不要新建 `DECISIONS.md`**
+
+每一步用哪个 skill：读 `cadence`。那些 skill 各是什么：跑 `/ask-matt`。See `docs/agents/flow.md`.
