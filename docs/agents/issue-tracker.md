@@ -32,7 +32,7 @@ CLI：`backlog`（v1.52.0，全局安装）。真相源是 `backlog/tasks/*.md`�
 |---|---|
 | 建票 | `backlog task create "标题" -d "描述" --ac "验收1" --ac "验收2"` |
 | 建票带阻塞边 | `backlog task create "标题" --dep zt-3,zt-5` |
-| **取前沿** | `backlog task list --ready --json` |
+| **取前沿** | `backlog task list -s ready --ready --json` ⚠️ 两个条件都要给，见下 |
 | 改状态 | `backlog task edit zt-7 -s verifying` |
 | 列票 | `backlog task list -s building --json` |
 | 看单票 | `backlog task zt-7 --plain` |
@@ -40,6 +40,11 @@ CLI：`backlog`（v1.52.0，全局安装）。真相源是 `backlog/tasks/*.md`�
 | 打标签 | `backlog task edit zt-7 -l needs-triage` |
 | 终端看板 | `backlog board`（交互式 TUI） |
 | 导出看板 | `backlog board export` |
+
+> ⚠️ **词汇陷阱（已实测）**：Backlog 的 `--ready` / `isReady` 意思是「**依赖都已解决、可以开工**」，
+> 与 cadence 的 **`ready` 列**是两个不同概念，只是名字撞了。
+> 实测：只写 `--ready` 会连 `discovery` 列的票一起捞出来（6 张），正确的前沿是 `-s ready --ready`（4 张）。
+> **「取前沿」两个条件必须同时给。**
 
 **依赖会被校验**：未知或歧义的依赖 **fail-closed**（按阻塞处理），不会静默当成已满足。
 

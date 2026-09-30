@@ -359,7 +359,7 @@ function render(rep, tracker, days, cross) {
   L.push(`tracker: ${tracker}   趋势窗口: ${days} 天   票数: ${rep.tickets}`)
   L.push('')
 
-  L.push('当前分布')
+  L.push('当前分布' + (cross && cross.uncommitted > 0 ? '（已并入未提交的票）' : ''))
   L.push('  ' + [...COLUMNS, 'other']
     .filter(c => c !== 'other' || rep.counts.other > 0)
     .map(c => `${LABEL[c]} ${rep.counts[c] || 0}`)
@@ -462,6 +462,19 @@ function main() {
   // 绝不能拿 `.scratch` 的决策票去比 Backlog 的实现票（那必然不一致）。
   // 比的是磁盘当前态，不是 git 历史 —— 否则「建了票还没提交」会假报警。
   const cross = opt.crosscheck ? backlogCrossCheck(root, timelines) : null
+
+  // 未提交的票对 git 历史是隐形的，但它们**确实存在**。不并进来，
+  // 你刚建完的票在板上就看不见 —— 那板子就是在骗人。
+  // （周期时间 / 吞吐 / 趋势仍只能来自 git，见 flow.md 的限制说明。）
+  if (cross && cross.uncommitted > 0) {
+    const other = new Map([...timelines].filter(([f]) => !f.startsWith('backlog/')))
+    const o = other.size ? analyze(other, { days: 1, alert: opt.alert, now: Date.now() }) : null
+    const base = o ? o.counts : Object.fromEntries([...COLUMNS, 'other'].map((c) => [c, 0]))
+    const merged = {}
+    for (const c of [...COLUMNS, 'other']) merged[c] = (base[c] || 0) + (cross.mine.counts[c] || 0)
+    rep.counts = merged
+    rep.tickets = (o ? o.tickets : 0) + cross.mine.tickets
+  }
 
   if (opt.json) {
     console.log(JSON.stringify({
